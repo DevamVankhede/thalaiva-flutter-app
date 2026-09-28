@@ -58,7 +58,7 @@ void main() {
 
       expect(translations['en']!['appName'], 'THALAIVAA');
       expect(translations['hi']!['appName'], 'थलाइवा');
-      expect(translations['gu']!['appName'], 'થલાઇવા');
+      expect(translations['gu']!['appName'], 'થલાઈવા');
       expect(translations['ta']!['appName'], 'தலைவா');
     });
 
