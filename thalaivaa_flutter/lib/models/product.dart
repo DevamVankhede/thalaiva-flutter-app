@@ -1,0 +1,1 @@
+class Product { final String id, name, slug; final int basePrice; final bool isVeg, isSpicy; final String? imageUrl; Product({required this.id, required this.name, required this.slug, required this.basePrice, required this.isVeg, required this.isSpicy, this.imageUrl}); }

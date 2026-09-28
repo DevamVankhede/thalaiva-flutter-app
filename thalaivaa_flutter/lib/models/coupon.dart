@@ -1,0 +1,1 @@
+class Coupon { final String id, code; final bool isActive; Coupon({required this.id, required this.code, required this.isActive}); }

@@ -1,0 +1,1 @@
+class ModifierOption { final String id, modifierGroupId, name; final int priceAdjustment; ModifierOption({required this.id, required this.modifierGroupId, required this.name, required this.priceAdjustment}); }

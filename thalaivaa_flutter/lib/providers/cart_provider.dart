@@ -1,0 +1,1 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart'; final cartProvider = StateNotifierProvider<CartNotifier, List>((ref) => CartNotifier()); class CartNotifier extends StateNotifier<List> { CartNotifier(): super([]); void add(dynamic item) => state = [...state, item]; }

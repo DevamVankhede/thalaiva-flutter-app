@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart'; class AuthScreen extends StatelessWidget { const AuthScreen({super.key}); @override Widget build(BuildContext ctx) => Scaffold(appBar: AppBar(title: Text('Auth')), body: Center(child: Text('Mobile OTP login — users.phone OTP; fcm_token'))); }

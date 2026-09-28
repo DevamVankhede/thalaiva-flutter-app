@@ -1,0 +1,1 @@
+class Branch { final String id, name, slug; Branch({required this.id, required this.name, required this.slug}); }

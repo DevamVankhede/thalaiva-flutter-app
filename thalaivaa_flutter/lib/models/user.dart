@@ -1,0 +1,1 @@
+class User { final String id, email, phone; final String locale; final String? fcmToken; User({required this.id, required this.email, required this.phone, this.locale='en', this.fcmToken}); }

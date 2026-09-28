@@ -1,0 +1,1 @@
+class Payment { final String id, orderId, status; final int amount; final String? razorpayPaymentId; Payment({required this.id, required this.orderId, required this.status, required this.amount, this.razorpayPaymentId}); }

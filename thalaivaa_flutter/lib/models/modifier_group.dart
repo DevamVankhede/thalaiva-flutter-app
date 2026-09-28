@@ -1,0 +1,1 @@
+class ModifierGroup { final String id, name, modifierType; final int minSelect, maxSelect; ModifierGroup({required this.id, required this.name, required this.modifierType, required this.minSelect, required this.maxSelect}); }

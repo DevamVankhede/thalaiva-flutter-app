@@ -1,0 +1,19 @@
+﻿name: thalaivaa_flutter
+version: 1.0.0+1
+description: Thalaivaa Customer Flutter App — Enterprise Food-Tech
+publish_to: none
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  riverpod: ^2.5.1
+  http: ^1.2.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

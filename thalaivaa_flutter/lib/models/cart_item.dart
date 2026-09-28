@@ -1,0 +1,1 @@
+class CartItem { final String userId, productId; final int quantity; final List<String> modifierIdsJson; CartItem({required this.userId, required this.productId, required this.quantity, required this.modifierIdsJson}); }
