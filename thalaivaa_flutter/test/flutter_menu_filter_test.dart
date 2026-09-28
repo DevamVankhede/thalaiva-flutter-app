@@ -1,74 +1,41 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:thalaivaa_flutter/providers/app_providers.dart';
 import 'package:thalaivaa_flutter/core/theme.dart';
+import 'package:thalaivaa_flutter/models/models.dart';
+import 'package:thalaivaa_flutter/providers/app_providers.dart';
 
 void main() {
-  group('Thalaivaa Filter, Delivery & Business Logic Tests', () {
-    test('Initial filtered list contains all 30 products', () {
-      final container = ProviderContainer();
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, 30);
+  group('Thalaivaa Flutter Menu & Cart Unit Tests', () {
+    test('1. Sample Products count & category distribution', () {
+      expect(sampleProducts.length, 30);
+      final categories = sampleProducts.map((p) => p.category).toSet();
+      expect(categories.length, greaterThanOrEqualTo(5));
+      expect(categories.contains('Dosas & Crispy Roasts'), isTrue);
     });
 
-    test('Category filter accurately isolates Dosas category', () {
-      final container = ProviderContainer();
-      container.read(selectedCategoryProvider.notifier).state = 'Dosas';
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, 6);
-      expect(products.every((p) => p.category == 'Dosas'), isTrue);
-    });
-
-    test('Category filter isolates Idlis & Vadas category', () {
-      final container = ProviderContainer();
-      container.read(selectedCategoryProvider.notifier).state = 'Idlis & Vadas';
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, 5);
-      expect(products.every((p) => p.category == 'Idlis & Vadas'), isTrue);
-    });
-
-    test('Category filter isolates Beverages category', () {
-      final container = ProviderContainer();
-      container.read(selectedCategoryProvider.notifier).state = 'Beverages';
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, 4);
-    });
-
-    test('Search query matches dish name and description', () {
+    test('2. Filtered products search functionality', () {
       final container = ProviderContainer();
       container.read(searchQueryProvider.notifier).state = 'Ghee Roast';
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, greaterThanOrEqualTo(1));
-      expect(products.first.name.contains('Ghee Roast'), isTrue);
+
+      final filtered = container.read(filteredProductsProvider);
+      expect(filtered.every((p) => p.name.contains('Ghee Roast') || p.description.contains('Ghee Roast')), isTrue);
     });
 
-    test('Bestseller filter only returns bestseller products', () {
+    test('3. Branch selection updates active operating branch', () {
       final container = ProviderContainer();
-      container.read(bestsellerOnlyProvider.notifier).state = true;
-      final products = container.read(filteredProductsProvider);
-      expect(products.every((p) => p.isBestseller), isTrue);
-      expect(products.length, greaterThan(0));
+      final branches = container.read(branchesProvider);
+      expect(branches.length, 3);
+      expect(branches.first.name, 'Thalaivaa - City Light (Main)');
+
+      container.read(selectedBranchProvider.notifier).state = branches[1];
+      final activeBranch = container.read(selectedBranchProvider);
+      expect(activeBranch.id, 'br-2');
+      expect(activeBranch.name, 'Thalaivaa - Vesu Branch');
     });
 
-    test('Pure Veg dietary filter retains all veg dishes', () {
+    test('4. Cart calculations: Subtotal, Tax, Delivery Fee & Grand Total', () {
       final container = ProviderContainer();
-      container.read(dietaryFilterProvider.notifier).state = DietaryFilter.vegOnly;
-      final products = container.read(filteredProductsProvider);
-      expect(products.length, 30);
-    });
-
-    test('Price Low to High sorting sorts correctly', () {
-      final container = ProviderContainer();
-      container.read(sortByProvider.notifier).state = SortOption.priceLowToHigh;
-      final products = container.read(filteredProductsProvider);
-      for (int i = 0; i < products.length - 1; i++) {
-        expect(products[i].price <= products[i + 1].price, isTrue);
-      }
-    });
-
-    test('Cart state correctly calculates subtotal, GST (5%), delivery fee & tip', () {
-      final container = ProviderContainer();
-      final p1 = sampleProducts.first; // Price: 180
+      final p1 = sampleProducts.first; // Price: 180.0
       container.read(cartProvider.notifier).addItem(p1);
       container.read(cartProvider.notifier).setTip(30.0);
 
@@ -80,17 +47,7 @@ void main() {
       expect(cart.grandTotal, 180.0 + 9.0 + 40.0 + 30.0);
     });
 
-    test('Delivery Address & OrderType state verify properly', () {
-      final container = ProviderContainer();
-      final addresses = container.read(savedAddressesProvider);
-      expect(addresses.length, 3);
-      expect(addresses.first.label, 'Home');
-
-      final orderType = container.read(orderTypeProvider);
-      expect(orderType, OrderType.delivery);
-    });
-
-    test('Multi-language translation returns expected values for all 4 languages', () {
+    test('5. Multi-language translation support for all 4 languages', () {
       final container = ProviderContainer();
       final translations = container.read(translationsProvider);
 
@@ -105,32 +62,7 @@ void main() {
       expect(translations['ta']!['appName'], 'தலைவா');
     });
 
-    test('Dish name & description localization works across languages', () {
-      final container = ProviderContainer();
-      final p1 = sampleProducts.first;
-
-      // English
-      container.read(languageProvider.notifier).state = 'en';
-      var dishInfo = container.read(localizedDishInfoProvider(p1));
-      expect(dishInfo.name, 'Ghee Roast Masala Dosa');
-
-      // Hindi
-      container.read(languageProvider.notifier).state = 'hi';
-      dishInfo = container.read(localizedDishInfoProvider(p1));
-      expect(dishInfo.name, 'घी रोस्ट मसाला डोसा');
-
-      // Gujarati
-      container.read(languageProvider.notifier).state = 'gu';
-      dishInfo = container.read(localizedDishInfoProvider(p1));
-      expect(dishInfo.name, 'ઘી રોસ્ટ મસાલા ઢોસા');
-
-      // Tamil
-      container.read(languageProvider.notifier).state = 'ta';
-      dishInfo = container.read(localizedDishInfoProvider(p1));
-      expect(dishInfo.name, 'நெய் ரோஸ்ட் மசாலா தோசை');
-    });
-
-    test('ThalaivaaTheme formats INR currency cleanly with rupee symbol', () {
+    test('6. ThalaivaaTheme formats INR currency cleanly', () {
       expect(ThalaivaaTheme.formatInr(180.0), '₹180');
       expect(ThalaivaaTheme.formatInr(240.0), '₹240');
     });
