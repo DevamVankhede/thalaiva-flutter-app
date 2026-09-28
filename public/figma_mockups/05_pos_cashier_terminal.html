@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thalaivaa - POS Cashier Terminal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background: #F1F5F9; display: flex; height: 100vh; overflow: hidden; }
+.catalog { flex: 2; padding: 16px; overflow-y: auto; }
+.pos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 12px; }
+.pos-item { background: white; border-radius: 12px; padding: 12px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #E2E8F0; }
+.order-sidebar { flex: 1; background: white; border-left: 1px solid #E2E8F0; display: flex; flex-direction: column; padding: 16px; }
+.pay-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+.pay-chip { background: #F8F9FA; border: 1px solid #CBD5E1; padding: 10px; border-radius: 8px; font-weight: 700; text-align: center; cursor: pointer; font-size: 12px; }
+.pay-chip.active { background: #FF6B00; color: white; border-color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>🧾 Thalaivaa POS Billing Terminal (Surat)</h2>
+    <input type="text" placeholder="Quick Search (F2)..." style="padding: 8px 14px; border-radius: 8px; border: 1px solid #CBD5E1;">
+  </div>
+  <div class="pos-grid">
+    <div class="pos-item"><div style="font-size: 32px;">🥞</div><div style="font-weight: 700; font-size: 13px;">Ghee Dosa</div><div style="color: #FF6B00; font-weight: 700;">₹180</div></div>
+    <div class="pos-item"><div style="font-size: 32px;">🥟</div><div style="font-weight: 700; font-size: 13px;">Button Idli</div><div style="color: #FF6B00; font-weight: 700;">₹150</div></div>
+    <div class="pos-item"><div style="font-size: 32px;">🍚</div><div style="font-weight: 700; font-size: 13px;">Biryani</div><div style="color: #FF6B00; font-weight: 700;">₹290</div></div>
+    <div class="pos-item"><div style="font-size: 32px;">☕</div><div style="font-weight: 700; font-size: 13px;">Filter Kaapi</div><div style="color: #FF6B00; font-weight: 700;">₹70</div></div>
+    <div class="pos-item"><div style="font-size: 32px;">🥥</div><div style="font-weight: 700; font-size: 13px;">Payasam</div><div style="color: #FF6B00; font-weight: 700;">₹140</div></div>
+    <div class="pos-item"><div style="font-size: 32px;">🧀</div><div style="font-weight: 700; font-size: 13px;">Cheese Dosa</div><div style="color: #FF6B00; font-weight: 700;">₹240</div></div>
+  </div>
+</div>
+<div class="order-sidebar">
+  <div style="font-weight: 800; font-size: 16px; margin-bottom: 12px;">Active Ticket #842</div>
+  <div style="flex: 1;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;"><span>1x Ghee Roast Dosa</span><span style="font-weight: 700;">₹180</span></div>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;"><span>2x Degree Coffee</span><span style="font-weight: 700;">₹140</span></div>
+  </div>
+  <div style="border-top: 1px solid #E2E8F0; padding-top: 12px;">
+    <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 18px; margin-bottom: 12px;">
+      <span>Total:</span><span style="color: #FF6B00;">₹320.00</span>
+    </div>
+    <div class="pay-grid">
+      <div class="pay-chip active">📱 UPI / QR</div>
+      <div class="pay-chip">💵 Cash</div>
+      <div class="pay-chip">💳 Card</div>
+    </div>
+    <button style="width: 100%; margin-top: 12px; padding: 14px; background: #10B981; color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 15px; cursor: pointer;">Print KOT & Settle Bill ➔</button>
+  </div>
+</div>
+</body>
+</html>

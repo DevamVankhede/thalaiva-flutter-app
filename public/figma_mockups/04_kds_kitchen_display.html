@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thalaivaa - Kitchen Display System (KDS)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background: #0F172A; color: white; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 14px; margin-bottom: 20px; }
+.kds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.kds-card { background: #1E293B; border-radius: 12px; overflow: hidden; border: 2px solid #334155; }
+.kds-card.urgent { border-color: #EF4444; }
+.kds-card-head { background: #334155; padding: 10px 14px; display: flex; justify-content: space-between; font-weight: 700; font-size: 13px; }
+.kds-body { padding: 14px; }
+.kds-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+.kds-btn { width: 100%; padding: 12px; background: #10B981; color: white; border: none; font-weight: 700; font-size: 14px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h2>👨‍🍳 Thalaivaa KDS Station — City Light Surat</h2>
+  <div style="background: #FF6B00; padding: 6px 14px; border-radius: 8px; font-weight: 700;">Live Kitchen Queue: 3 Orders</div>
+</div>
+<div class="kds-grid">
+  <div class="kds-card urgent">
+    <div class="kds-card-head"><span>#THL-9482 (Dine-in T4)</span><span style="color: #EF4444;">⏱️ 14 min</span></div>
+    <div class="kds-body">
+      <div class="kds-item"><span>🥞 2x Ghee Roast Masala Dosa</span><span style="color: #FFB800;">Crispy</span></div>
+      <div class="kds-item"><span>☕ 2x Degree Filter Kaapi</span><span>Hot</span></div>
+    </div>
+    <button class="kds-btn">Mark Prepared ➔</button>
+  </div>
+  <div class="kds-card">
+    <div class="kds-card-head"><span>#THL-9483 (Delivery)</span><span style="color: #10B981;">⏱️ 4 min</span></div>
+    <div class="kds-body">
+      <div class="kds-item"><span>🍚 1x Chettinad Biryani</span><span>Med Spice</span></div>
+      <div class="kds-item"><span>🥥 1x Elaneer Payasam</span><span>Chilled</span></div>
+    </div>
+    <button class="kds-btn">Mark Prepared ➔</button>
+  </div>
+</div>
+</body>
+</html>

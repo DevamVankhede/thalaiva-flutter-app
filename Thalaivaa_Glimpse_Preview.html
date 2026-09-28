@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thalaivaa - Multi-Surface UI/UX Design System & Live Application</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background: #0B0F19; color: #F8FAFC; padding: 20px; min-height: 100vh; }
+.header { text-align: center; margin-bottom: 20px; }
+.header h1 { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, #FF6B00, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header p { color: #94A3B8; font-size: 13px; margin-top: 4px; }
+.tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab-btn { background: #1E293B; color: #94A3B8; border: 1px solid #334155; padding: 8px 16px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.tab-btn.active { background: #FF6B00; color: white; border-color: #FF6B00; box-shadow: 0 4px 14px rgba(255,107,0,0.4); }
+.frame-container { display: flex; justify-content: center; align-items: center; }
+iframe { width: 100%; max-width: 1050px; height: 860px; border: none; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); background: transparent; }
+.stats-bar { max-width: 1050px; margin: 20px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.stat-card { background: #1E293B; border: 1px solid #334155; padding: 14px; border-radius: 14px; text-align: center; }
+.stat-val { font-size: 18px; font-weight: 800; color: #FF6B00; }
+.stat-lbl { font-size: 11px; color: #94A3B8; margin-top: 3px; }
+</style>
+<script>
+function switchTab(src, btn) {
+  document.getElementById('proto-frame').src = src;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</head>
+<body>
+<div class="header">
+  <h1>🍽️ Thalaivaa UI/UX Design System & Live Application</h1>
+  <p>Authentic South Indian SaaS Architecture • Mobile Client • POS • KDS • Backend API</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('figma_mockups/01_customer_mobile_home.html', this)">📱 Customer Mobile App (Interactive)</button>
+  <button class="tab-btn" onclick="switchTab('http://localhost:8085', this)">⚡ Live Flutter Web Client</button>
+  <button class="tab-btn" onclick="switchTab('figma_mockups/02_customer_cart_checkout.html', this)">🛒 Cart & Checkout</button>
+  <button class="tab-btn" onclick="switchTab('figma_mockups/03_customer_live_tracking.html', this)">📍 Live Order Tracking</button>
+  <button class="tab-btn" onclick="switchTab('figma_mockups/04_kds_kitchen_display.html', this)">👨‍🍳 Kitchen Display (KDS)</button>
+  <button class="tab-btn" onclick="switchTab('figma_mockups/05_pos_cashier_terminal.html', this)">🧾 POS Cashier Terminal</button>
+</div>
+
+<div class="frame-container">
+  <iframe id="proto-frame" src="figma_mockups/01_customer_mobile_home.html"></iframe>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card"><div class="stat-val">30 Dishes</div><div class="stat-lbl">Seeded in Database</div></div>
+  <div class="stat-card"><div class="stat-val">3 Outlets</div><div class="stat-lbl">City Light, Vesu, Adajan</div></div>
+  <div class="stat-card"><div class="stat-val">5 Surfaces</div><div class="stat-lbl">Mobile, POS, KDS, Web, Admin</div></div>
+  <div class="stat-card"><div class="stat-val">WCAG AAA</div><div class="stat-lbl">High-Contrast Accessibility</div></div>
+</div>
+</body>
+</html>

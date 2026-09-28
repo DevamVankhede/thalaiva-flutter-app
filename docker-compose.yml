@@ -1,0 +1,112 @@
+services:
+  # 1. PostgreSQL 16 Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: thalaivaa_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: thalaivaa
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - thalaivaa_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  # 2. Hardened Laravel Backend REST API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: thalaivaa_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: Thalaivaa
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: thalaivaa
+      DB_USERNAME: postgres
+      DB_PASSWORD: secretpassword
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - thalaivaa_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1G
+
+  # 3. Flutter Web Frontend Client
+  frontend:
+    build:
+      context: ../thalaivaa_flutter
+      dockerfile: Dockerfile
+    container_name: thalaivaa_frontend
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    depends_on:
+      - backend
+    networks:
+      - thalaivaa_network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  # 4. Agent Isolated Sandbox Environment
+  # Autonomous agents can use this container to execute tests, code, and VAPT audits
+  sandbox:
+    build:
+      context: .
+      dockerfile: Dockerfile.sandbox
+    container_name: thalaivaa_agent_sandbox
+    volumes:
+      - .:/sandbox
+    environment:
+      APP_ENV: testing
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /sandbox/database/testing.sqlite
+    networks:
+      - thalaivaa_network
+    profiles:
+      - testing
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+
+networks:
+  thalaivaa_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class ModifierGroup extends Model
+{
+    use HasUuids;
+
+    protected $table = 'modifier_groups';
+
+    protected $fillable = [
+        'branch_id',
+        'name',
+        'modifier_type',
+        'min_select',
+        'max_select',
+        'is_required',
+        'is_active',
+        'sort_order',
+    ];
+
+    protected $casts = [
+        'min_select' => 'integer',
+        'max_select' => 'integer',
+        'is_required' => 'boolean',
+        'is_active' => 'boolean',
+        'sort_order' => 'integer',
+    ];
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function options(): HasMany
+    {
+        return $this->hasMany(ModifierOption::class);
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "totalLines": 858,
+  "hitLines": 565,
+  "coveragePct": 65.85,
+  "files": {
+    "lib/providers/app_providers.dart": {
+      "found": 254,
+      "hit": 108
+    },
+    "lib/core/theme.dart": {
+      "found": 39,
+      "hit": 5
+    },
+    "lib/models/models.dart": {
+      "found": 19,
+      "hit": 10
+    },
+    "lib/features/order/order_screen.dart": {
+      "found": 546,
+      "hit": 442
+    }
+  }
+}

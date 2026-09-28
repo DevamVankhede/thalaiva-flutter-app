@@ -1,0 +1,20 @@
+00:00 +0: loading C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart
+00:00 +0: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Initial filtered list contains all 30 products
+00:00 +1: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Category filter accurately isolates Dosas category
+00:00 +2: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Category filter isolates Idlis & Vadas category
+00:00 +3: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Category filter isolates Beverages category
+00:00 +4: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Search query matches dish name and description
+00:00 +5: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Bestseller filter only returns bestseller products
+00:00 +6: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Pure Veg dietary filter retains all veg dishes
+00:00 +7: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Price Low to High sorting sorts correctly
+00:00 +8: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Cart state correctly calculates subtotal, GST (5%), delivery fee & tip
+00:00 +9: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Delivery Address & OrderType state verify properly
+00:00 +10: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Multi-language translation returns expected values for all 4 languages
+00:00 +11: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests Dish name & description localization works across languages
+00:00 +12: C:/Users/Admin/thalaivaa_flutter/test/flutter_menu_filter_test.dart: Thalaivaa Filter, Delivery & Business Logic Tests ThalaivaaTheme formats INR currency cleanly with rupee symbol
+00:00 +13: C:/Users/Admin/thalaivaa_flutter/test/order_tracking_test.dart: Live Order Tracking & Driver Visibility Tests 1. Confirmed Stage: Driver name is HIDDEN and assigning card is shown
+00:00 +14: C:/Users/Admin/thalaivaa_flutter/test/order_tracking_test.dart: Live Order Tracking & Driver Visibility Tests 2. Preparing Stage: Driver name is HIDDEN and assigning card is shown
+00:00 +15: C:/Users/Admin/thalaivaa_flutter/test/order_tracking_test.dart: Live Order Tracking & Driver Visibility Tests 3. Out for Delivery Stage: Driver name is VISIBLE with call/chat buttons
+00:01 +16: C:/Users/Admin/thalaivaa_flutter/test/order_tracking_test.dart: Live Order Tracking & Driver Visibility Tests 4. Delivered Stage: Shows Delivered by summary and rating interaction
+00:01 +17: All tests passed!
+

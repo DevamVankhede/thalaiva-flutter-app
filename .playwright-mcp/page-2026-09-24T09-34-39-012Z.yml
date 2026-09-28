@@ -1,0 +1,104 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: 👑
+      - generic [ref=e5]:
+        - generic [ref=e6]: Thalaivaa Mobile Simulator
+        - generic [ref=e7]: South Indian SaaS • Interactive Mobile Engine
+    - generic [ref=e8]:
+      - link "⚡ Real Flutter App ↗" [ref=e9] [cursor=pointer]:
+        - /url: /flutter_web/index.html
+      - link "🖥️ Multi-Surface Studio" [ref=e10] [cursor=pointer]:
+        - /url: /preview
+      - button "📱 Portrait" [ref=e11] [cursor=pointer]
+      - button "🌓 Dark/Light" [ref=e12] [cursor=pointer]
+      - button "🌐 English" [ref=e13] [cursor=pointer]:
+        - text: 🌐
+        - generic [ref=e14]: English
+      - combobox [ref=e15] [cursor=pointer]:
+        - option "iPhone 16 Pro (Titanium)" [selected]
+        - option "Google Pixel 9"
+        - option "Samsung Galaxy S24"
+      - link "👑 Admin Panel ↗" [ref=e16] [cursor=pointer]:
+        - /url: /admin
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic "Action Button" [ref=e19] [cursor=pointer]
+      - generic "Volume Up" [ref=e20] [cursor=pointer]
+      - generic "Volume Down" [ref=e21] [cursor=pointer]
+      - generic "Power / Lock Screen" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 🍛
+          - generic [ref=e28]: Thalaivaa 5G
+        - generic [ref=e30]:
+          - generic [ref=e31]: 15:04
+          - generic [ref=e32]:
+            - generic [ref=e33]: 5G
+            - generic [ref=e34]: 📶
+            - generic [ref=e35]: 🔋 98%
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - generic [ref=e39]: Delivering To
+              - generic [ref=e40] [cursor=pointer]:
+                - generic [ref=e41]: 📍 City Light, Surat ▾
+                - text: ▾
+            - generic [ref=e42]:
+              - button "🌓" [ref=e43] [cursor=pointer]
+              - button "🌐" [ref=e44] [cursor=pointer]
+              - button "👤" [ref=e45] [cursor=pointer]
+          - generic [ref=e46]:
+            - generic [ref=e47]: 🔍
+            - textbox "Search Dosas, Idlis, Filter Kaapi..." [ref=e48]
+        - navigation [ref=e49]:
+          - button "✨ All (30)" [ref=e50] [cursor=pointer]
+          - button "🥞 Dosas" [ref=e51] [cursor=pointer]
+          - button "🥣 Idlis & Vadas" [active] [ref=e52] [cursor=pointer]
+          - button "🍳 Uthappams" [ref=e53] [cursor=pointer]
+          - button "🍛 Thali & Meals" [ref=e54] [cursor=pointer]
+          - button "☕ Kaapi & Beverages" [ref=e55] [cursor=pointer]
+          - button "🍯 Desserts" [ref=e56] [cursor=pointer]
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: 🎉 FESTIVE SPECIAL • 50% OFF
+            - generic [ref=e61]: Authentic South Indian Taste of Tradition
+            - generic [ref=e62]: Use coupon THALAIVAA50 on checkout for instant savings.
+          - generic [ref=e63]:
+            - generic [ref=e210]:
+              - generic [ref=e211]:
+                - generic [ref=e212]: Bestseller
+                - generic [ref=e216]: Steaming Button Ghee Idlis (14 Pcs)
+                - generic [ref=e217]: 14 mini melt-in-mouth rice cakes floating in a bowl of aromatic sambar and topped with hot desi ghee.
+                - generic [ref=e218]: ₹140
+              - generic [ref=e219]:
+                - generic [ref=e220]: 🥣
+                - button "+ ADD" [ref=e221] [cursor=pointer]
+            - generic [ref=e222]:
+              - generic [ref=e223]:
+                - generic [ref=e224]: Crispy
+                - generic [ref=e228]: Medu Vada Platter (2 Pcs)
+                - generic [ref=e229]: Golden-fried urad dal fritters with fresh curry leaves, whole black pepper, and fresh coconut chutney.
+                - generic [ref=e230]: ₹110
+              - generic [ref=e231]:
+                - generic [ref=e232]: 🍩
+                - button "+ ADD" [ref=e233] [cursor=pointer]
+        - generic [ref=e190] [cursor=pointer]:
+          - generic [ref=e191]:
+            - generic [ref=e192]: 3 Items
+            - generic [ref=e193]: ₹286.00
+          - generic [ref=e194]: View Cart ➔
+        - navigation [ref=e196]:
+          - generic [ref=e197] [cursor=pointer]:
+            - generic [ref=e198]: 🍽️
+            - generic [ref=e199]: Menu
+          - generic [ref=e200] [cursor=pointer]:
+            - generic [ref=e201]: 🛒
+            - generic [ref=e202]: Cart
+          - generic [ref=e203] [cursor=pointer]:
+            - generic [ref=e204]: 📍
+            - generic [ref=e205]: Track
+          - generic [ref=e206] [cursor=pointer]:
+            - generic [ref=e207]: 👤
+            - generic [ref=e208]: Profile
+        - generic [ref=e209] [cursor=pointer]

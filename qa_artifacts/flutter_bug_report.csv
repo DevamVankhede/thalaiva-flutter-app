@@ -1,0 +1,4 @@
+Bug ID,Severity,Feature,Problem Summary,Steps to Reproduce,Expected Result,Actual Result,Root Cause,Status
+BUG-001,MEDIUM,Admin Panel Assets,Unstyled login page due to missing published assets,Open /admin/login directly,Proper Filament styling,Raw unstyled HTML,Assets not published to public/css,RESOLVED (filament:assets published)
+BUG-002,LOW,Flutter App Providers,Duplicate matchCategory function declaration,Run flutter compile/analyze,Clean compilation,Name collision compilation error,Duplicate function in app_providers.dart,RESOLVED (duplicate removed)
+BUG-003,MEDIUM,Simulator Cart Overlay,Floating cart bar overlapped Cart & Tracking screens,Add items and go to Cart screen,Floating bar hidden on Cart screen,Bar remained visible over buttons,updateCartUI did not check active screen,RESOLVED (screen isolation added)

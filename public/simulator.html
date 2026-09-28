@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Thalaivaa - Interactive Mobile Phone Simulator & Flutter App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #FF6B00;
+  --primary-dark: #E05D00;
+  --primary-light: #FFF4EC;
+  --accent: #FFB800;
+  --success: #10B981;
+  --danger: #EF4444;
+  --bg-app: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --border-color: #E2E8F0;
+  --sim-scale: 1;
+}
+
+[data-theme="dark"] {
+  --bg-app: #0F141C;
+  --card-bg: #18202F;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --border-color: #2D3748;
+  --primary-light: rgba(255, 107, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: radial-gradient(circle at 50% 20%, #1A2333 0%, #0B0F17 100%);
+  color: #F8FAFC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Studio Header / Toolbar */
+.studio-bar {
+  width: 100%;
+  max-width: 1200px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #FF6B00, #FFA500);
+  color: white;
+  font-weight: 900;
+  font-size: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(255, 107, 0, 0.4);
+}
+
+.brand-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.3px;
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  background: #1E293B;
+  color: #CBD5E1;
+  border: 1px solid #334155;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.control-btn:hover {
+  background: #334155;
+  color: white;
+  border-color: #475569;
+}
+
+.control-btn.active {
+  background: #FF6B00;
+  border-color: #FF6B00;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.35);
+}
+
+.device-select {
+  background: #1E293B;
+  color: white;
+  border: 1px solid #334155;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Simulator Main Stage */
+.sim-stage {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  position: relative;
+}
+
+/* Phone Hardware Frame */
+.phone-chassis {
+  position: relative;
+  width: 390px;
+  height: 830px;
+  background: #1E222B;
+  border-radius: 54px;
+  padding: 12px;
+  box-shadow: 
+    0 0 0 2px #3E4554,
+    0 0 0 6px #1A1D24,
+    0 30px 80px rgba(0, 0, 0, 0.8),
+    0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  transition: transform 0.3s ease, border-radius 0.3s ease;
+  transform: scale(var(--sim-scale));
+  transform-origin: center center;
+}
+
+/* Hardware Buttons */
+.side-btn {
+  position: absolute;
+  background: #2D3340;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.side-btn:hover { background: #FF6B00; }
+.side-btn:active { transform: scale(0.96); }
+
+/* Left Buttons (Volume & Action) */
+.btn-action { left: -14px; top: 115px; width: 4px; height: 26px; }
+.btn-vol-up { left: -14px; top: 160px; width: 4px; height: 50px; }
+.btn-vol-down { left: -14px; top: 222px; width: 4px; height: 50px; }
+
+/* Right Button (Power) */
+.btn-power { right: -14px; top: 180px; width: 4px; height: 75px; }
+
+/* Phone Screen (Glass Bezel) */
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-app);
+  border-radius: 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+}
+
+/* Dynamic Island */
+.dynamic-island-container {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.dynamic-island {
+  pointer-events: auto;
+  background: #000000;
+  height: 30px;
+  width: 118px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.dynamic-island.expanded {
+  width: 280px;
+  height: 64px;
+  border-radius: 26px;
+  padding: 10px 16px;
+}
+
+.island-camera {
+  width: 11px;
+  height: 11px;
+  background: #111B27;
+  border-radius: 50%;
+  border: 1px solid #1E293B;
+  box-shadow: inset 0 0 2px #00FFFF;
+}
+
+/* Status Bar */
+.phone-status-bar {
+  height: 44px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+  z-index: 900;
+  background: transparent;
+}
+
+.status-time {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+}
+
+/* App Header */
+.app-header {
+  padding: 8px 16px 12px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 800;
+}
+
+.location-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.loc-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.loc-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-circle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-circle-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Search Box */
+.app-search {
+  margin-top: 10px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.app-search input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Category Filters */
+.category-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+.category-scroll::-webkit-scrollbar { display: none; }
+
+.cat-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cat-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 10px rgba(255, 107, 0, 0.3);
+}
+
+/* App Viewport Container (Screens) */
+.app-viewport {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+.app-viewport::-webkit-scrollbar { width: 4px; }
+.app-viewport::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+
+.app-screen {
+  display: none;
+  padding: 14px 16px 110px;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+.app-screen.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Promotion Card */
+.promo-card {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF8F3D 100%);
+  border-radius: 18px;
+  padding: 16px;
+  color: white;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+
+.promo-badge {
+  background: rgba(0,0,0,0.25);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.promo-title {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.promo-desc {
+  font-size: 11px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* Dish List Item Card */
+.dish-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.dish-item:hover {
+  border-color: rgba(255, 107, 0, 0.4);
+}
+
+.dish-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dish-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.veg-icon {
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid #10B981;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.veg-icon .veg-inner {
+  width: 6px;
+  height: 6px;
+  background: #10B981;
+  border-radius: 50%;
+}
+
+.badge-tag {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.dish-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.dish-desc-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dish-price-tag {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-top: 8px;
+}
+
+.dish-thumb-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 78px;
+}
+
+.dish-icon-box {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+.add-cart-btn {
+  width: 76px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 0;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(255, 107, 0, 0.3);
+  transition: all 0.15s;
+}
+
+.add-cart-btn:hover {
+  background: var(--primary-dark);
+}
+
+.qty-pill {
+  width: 76px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.qty-click {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* Floating Cart Bar (Appears when items in cart) */
+.cart-floating-bar {
+  position: absolute;
+  bottom: 72px;
+  left: 14px;
+  right: 14px;
+  background: #0F172A;
+  color: white;
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  z-index: 850;
+  animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.cart-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-count-badge {
+  background: var(--primary);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.cart-bar-total {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cart-bar-action {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Bottom Navigation */
+.app-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 890;
+  padding-bottom: 8px;
+}
+
+.nav-tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.nav-tab-item.active {
+  color: var(--primary);
+}
+
+.nav-tab-icon {
+  font-size: 18px;
+}
+
+/* Home Indicator Bar (iOS Swipe Bar) */
+.home-indicator {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 4.5px;
+  background: var(--text-muted);
+  opacity: 0.4;
+  border-radius: 10px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+/* CART SCREEN STYLES */
+.checkout-section {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.sec-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-type-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-app);
+  padding: 3px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.type-tab {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.type-tab.active {
+  background: var(--primary);
+  color: white;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+.cart-row:last-child { border-bottom: none; }
+
+.cart-item-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.cart-item-price {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.bill-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.bill-line.total-line {
+  border-top: 1px solid var(--border-color);
+  padding-top: 8px;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.btn-primary-block {
+  width: 100%;
+  background: linear-gradient(135deg, #FF6B00, #E05D00);
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 107, 0, 0.4);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-primary-block:hover { transform: translateY(-1px); }
+
+/* TRACKING SCREEN STYLES */
+.map-canvas {
+  height: 180px;
+  background: #1E293B;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.map-road {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  height: 8px;
+  background: #334155;
+  border-radius: 4px;
+  transform: translateY(-50%);
+}
+
+.map-driver {
+  position: absolute;
+  top: calc(50% - 16px);
+  left: 60%;
+  font-size: 26px;
+  transition: left 3s ease-in-out;
+  animation: drivePulse 1.5s infinite alternate;
+}
+
+@keyframes drivePulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.tracking-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.step-bullet {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-app);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  z-index: 2;
+}
+
+.step-bullet.completed {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.step-bullet.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+}
+
+.step-line {
+  position: absolute;
+  left: 11px;
+  top: 24px;
+  bottom: -14px;
+  width: 2px;
+  background: var(--border-color);
+  z-index: 1;
+}
+
+/* Sleep / Lock Screen Overlay */
+.phone-lock-screen {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  z-index: 9999;
+  display: none;
+  border-radius: 44px;
+}
+.phone-lock-screen.active {
+  display: block;
+}
+
+/* Volume HUD Overlay */
+.volume-hud {
+  position: absolute;
+  top: 90px;
+  left: 10px;
+  width: 4px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.volume-hud.visible { opacity: 1; }
+.volume-level {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  background: white;
+  border-radius: 4px;
+}
+
+/* Quick Toast */
+.sim-toast {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: none;
+  animation: popIn 0.2s ease forwards;
+  white-space: nowrap;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 480px) {
+  :root { --sim-scale: 0.9; }
+  .phone-chassis { transform: scale(0.9); }
+}
+</style>
+</head>
+<body>
+
+<!-- Studio Toolbar Header -->
+<header class="studio-bar">
+  <div class="studio-brand">
+    <div class="brand-badge">🍽️</div>
+    <div>
+      <div class="brand-title">Thalaivaa Studio Simulator</div>
+      <div class="brand-sub">SaaS Food-Tech Platform • Live Multi-Surface App</div>
+    </div>
+  </div>
+
+  <div class="controls-group">
+    <button class="control-btn active" id="btn-mode-studio" onclick="setRenderMode('studio')">📱 Interactive Phone App</button>
+    <button class="control-btn" id="btn-mode-flutter" onclick="setRenderMode('flutter')">⚡ Flutter Web View</button>
+    
+    <select class="device-select" onchange="switchDeviceModel(this.value)">
+      <option value="iphone16">iPhone 16 Pro</option>
+      <option value="pixel9">Pixel 9 Pro</option>
+      <option value="galaxy24">Galaxy S24 Ultra</option>
+    </select>
+
+    <button class="control-btn" onclick="openAuthModal()" style="background: linear-gradient(135deg, #FF6B00, #FFA500); color: white; border: none;">
+      🔐 <span id="auth-status-label">Auto-Logged In</span>
+    </button>
+  </div>
+</header>
+
+<!-- Main Stage -->
+<main class="sim-stage">
+  <!-- Interactive Hardware Phone Frame -->
+  <div class="phone-chassis" id="device-frame">
+    <!-- Physical Side Buttons -->
+    <div class="side-btn btn-action" title="Action Button" onclick="triggerToast('⚡ Thalaivaa Quick Action!')"></div>
+    <div class="side-btn btn-vol-up" title="Volume Up" onclick="adjustVolume(10)"></div>
+    <div class="side-btn btn-vol-down" title="Volume Down" onclick="adjustVolume(-10)"></div>
+    <div class="side-btn btn-power" title="Power / Lock Screen" onclick="togglePowerLock()"></div>
+
+    <!-- Phone Screen -->
+    <div class="phone-screen" id="app-container">
+      <!-- Real Compiled Flutter Web App Viewport (Iframe inside Phone Screen) -->
+      <iframe id="flutter-viewport-iframe" src="/flutter_web/index.html" style="width:100%; height:100%; border:none; border-radius:42px; position:absolute; inset:0; z-index:950; background:#0B0F19; display:none;"></iframe>
+
+      <!-- Volume HUD -->
+      <div class="volume-hud" id="volume-hud"><div class="volume-level" id="volume-level"></div></div>
+
+      <!-- Toast -->
+      <div class="sim-toast" id="sim-toast">Added to Cart!</div>
+
+      <!-- Lock Screen -->
+      <div class="phone-lock-screen" id="lock-screen" onclick="togglePowerLock()"></div>
+
+      <!-- Dynamic Island -->
+      <div class="dynamic-island-container">
+        <div class="dynamic-island" id="dynamic-island" onclick="toggleDynamicIsland()">
+          <span style="font-size:12px">🍛</span>
+          <span id="island-text" style="font-size:10px">Thalaivaa 5G</span>
+          <div class="island-camera"></div>
+        </div>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="phone-status-bar">
+        <span class="status-time" id="clock-display">9:41</span>
+        <div class="status-icons">
+          <span>5G</span>
+          <span>📶</span>
+          <span>🔋 98%</span>
+        </div>
+      </div>
+
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="location-bar">
+          <div class="location-info">
+            <span class="loc-label" id="t-delivering-to">Delivering To</span>
+            <div class="loc-name" onclick="switchBranch()">
+              <span id="active-branch-name">📍 City Light, Surat</span> ▾
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="icon-circle-btn" onclick="toggleDarkMode()" title="Toggle Theme">🌓</button>
+            <button class="icon-circle-btn" onclick="cycleLanguage()" title="Language">🌐</button>
+            <button class="icon-circle-btn" onclick="switchScreen('profile')" title="Profile">👤</button>
+          </div>
+        </div>
+
+        <div class="app-search">
+          <span>🔍</span>
+          <input type="text" id="menu-search-input" placeholder="Search Dosas, Idlis, Filter Kaapi..." oninput="handleSearch(this.value)">
+        </div>
+      </header>
+
+      <!-- Category Filter Pills -->
+      <nav class="category-scroll" id="cat-scroll">
+        <button class="cat-btn active" onclick="filterCategory('all', this)">✨ All (30)</button>
+        <button class="cat-btn" onclick="filterCategory('dosas', this)">🥞 Dosas</button>
+        <button class="cat-btn" onclick="filterCategory('idlis', this)">🥣 Idlis & Vadas</button>
+        <button class="cat-btn" onclick="filterCategory('uthappam', this)">🍳 Uthappams</button>
+        <button class="cat-btn" onclick="filterCategory('meals', this)">🍛 Thali & Meals</button>
+        <button class="cat-btn" onclick="filterCategory('kaapi', this)">☕ Kaapi & Beverages</button>
+        <button class="cat-btn" onclick="filterCategory('sweets', this)">🍯 Desserts</button>
+      </nav>
+
+      <!-- Screen Viewport Container -->
+      <div class="app-viewport">
+        <!-- 1. MENU EXPLORE SCREEN -->
+        <section class="app-screen active" id="screen-menu">
+          <!-- Promo Card -->
+          <div class="promo-card">
+            <div class="promo-badge" id="t-offer-tag">🎉 FESTIVE SPECIAL • 50% OFF</div>
+            <div class="promo-title" id="t-offer-title">Authentic South Indian Taste of Tradition</div>
+            <div class="promo-desc" id="t-offer-desc">Use coupon <b>THALAIVAA50</b> on checkout for instant savings.</div>
+          </div>
+
+          <!-- Dish List Container -->
+          <div id="dish-list-container">
+            <!-- Dishes injected via JS -->
+          </div>
+        </section>
+
+        <!-- 2. CART & CHECKOUT SCREEN -->
+        <section class="app-screen" id="screen-cart">
+          <div class="checkout-section">
+            <div class="sec-title"><span>🍽️ Order Mode</span></div>
+            <div class="order-type-tabs">
+              <div class="type-tab active" onclick="setOrderType('delivery', this)">🛵 Delivery</div>
+              <div class="type-tab" onclick="setOrderType('takeaway', this)">🛍️ Takeaway</div>
+              <div class="type-tab" onclick="setOrderType('dinein', this)">🪑 Dine-in Table</div>
+            </div>
+            <div style="font-size:11px; color:var(--text-muted);">Selected Outlet: <b style="color:var(--text-main);" id="cart-branch-lbl">City Light Hub (Main)</b></div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title">
+              <span>🛒 Items in Order</span>
+              <span style="color:var(--danger); cursor:pointer; font-size:11px;" onclick="clearCart()">Clear All</span>
+            </div>
+            <div id="cart-items-container">
+              <!-- Cart rows rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>🎟️ Coupon & Promo</span></div>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="coupon-input" placeholder="e.g. THALAIVAA50" value="THALAIVAA50" style="flex:1; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:11.5px; font-weight:700; text-transform:uppercase;">
+              <button onclick="applyCoupon()" style="background:var(--primary); color:white; border:none; padding:8px 14px; border-radius:8px; font-size:11.5px; font-weight:800; cursor:pointer;">Apply</button>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>🧾 Bill Summary</span></div>
+            <div class="bill-line"><span>Item Subtotal</span><span id="bill-subtotal">₹0.00</span></div>
+            <div class="bill-line"><span>GST (5%)</span><span id="bill-tax">₹0.00</span></div>
+            <div class="bill-line"><span>Delivery Fee</span><span id="bill-delivery" style="color:var(--success); font-weight:700;">FREE</span></div>
+            <div class="bill-line"><span>Promo Discount</span><span id="bill-discount" style="color:var(--success); font-weight:700;">-₹0.00</span></div>
+            <div class="bill-line total-line"><span>Grand Total</span><span id="bill-grand-total" style="color:var(--primary);">₹0.00</span></div>
+          </div>
+
+          <button class="btn-primary-block" onclick="placeOrder()">
+            <span>Place Order ➔</span>
+          </button>
+        </section>
+
+        <!-- 3. LIVE ORDER TRACKING SCREEN -->
+        <section class="app-screen" id="screen-tracking">
+          <div class="checkout-section" style="text-align:center;">
+            <div style="font-size:10px; font-weight:800; color:var(--primary); text-transform:uppercase;">ORDER #TH-8921</div>
+            <div style="font-size:16px; font-weight:800; color:var(--text-main); margin-top:2px;">🛵 Arriving in <span style="color:var(--primary);">18 Mins</span></div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Freshly dispatched from City Light Branch</div>
+          </div>
+
+          <!-- Animated Map Canvas -->
+          <div class="map-canvas">
+            <div class="map-road"></div>
+            <div class="map-driver" id="map-driver">🛵</div>
+            <div style="position:absolute; left:16px; top:calc(50% - 14px); font-size:22px;" title="Branch">🏪</div>
+            <div style="position:absolute; right:16px; top:calc(50% - 14px); font-size:22px;" title="Home">🏡</div>
+          </div>
+
+          <!-- Driver Profile Card -->
+          <div class="checkout-section" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:38px; height:38px; border-radius:50%; background:#FF6B00; color:white; display:flex; align-items:center; justify-content:center; font-size:18px;">👨‍✈️</div>
+              <div>
+                <div style="font-size:13px; font-weight:800; color:var(--text-main);">Murugan S.</div>
+                <div style="font-size:10px; color:var(--text-muted);">4.9 ⭐ • Hero Electric (GJ-05-TH)</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="icon-circle-btn" onclick="triggerToast('📞 Calling Rider Murugan...')">📞</button>
+              <button class="icon-circle-btn" onclick="triggerToast('💬 Opening WhatsApp Chat...')">💬</button>
+            </div>
+          </div>
+
+          <!-- Milestone Steps -->
+          <div class="checkout-section">
+            <div class="sec-title"><span>📦 Live Status Timeline</span></div>
+            <div class="tracking-step">
+              <div class="step-line"></div>
+              <div class="step-bullet completed">✓</div>
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--text-main);">Order Confirmed & Payment Received</div>
+                <div style="font-size:10px; color:var(--text-muted);">9:42 AM • Paid via Razorpay / UPI</div>
+              </div>
+            </div>
+
+            <div class="tracking-step">
+              <div class="step-line"></div>
+              <div class="step-bullet completed">✓</div>
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--text-main);">Hot Kitchen Preparation (KDS)</div>
+                <div style="font-size:10px; color:var(--text-muted);">9:45 AM • Master Chef Kumar in action</div>
+              </div>
+            </div>
+
+            <div class="tracking-step">
+              <div class="step-line"></div>
+              <div class="step-bullet active">➔</div>
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--primary);">Out for Fast Delivery</div>
+                <div style="font-size:10px; color:var(--text-muted);">9:50 AM • Rider is 1.4 km away</div>
+              </div>
+            </div>
+
+            <div class="tracking-step">
+              <div class="step-bullet">4</div>
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--text-muted);">Delivered with Filter Kaapi Steam</div>
+                <div style="font-size:10px; color:var(--text-muted);">Est. 10:00 AM</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. PROFILE SCREEN -->
+        <section class="app-screen" id="screen-profile">
+          <div class="checkout-section" style="text-align:center; padding:20px 14px;">
+            <div style="width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg, #FF6B00, #FFA500); color:white; display:flex; align-items:center; justify-content:center; font-size:26px; margin:0 auto 10px;">👑</div>
+            <div style="font-size:15px; font-weight:800; color:var(--text-main);">Thalaivaa Gold Member</div>
+            <div style="font-size:11px; color:var(--text-muted);">+91 92170 02598 • customer@thalaivaa.com</div>
+            <div style="display:inline-block; margin-top:8px; background:var(--primary-light); color:var(--primary); padding:4px 12px; border-radius:20px; font-size:11px; font-weight:800;">🪙 450 Thalaivaa Reward Coins</div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>⚙️ Quick Preferences</span></div>
+            <div class="cart-row" style="cursor:pointer;" onclick="cycleLanguage()">
+              <span class="cart-item-title">🌐 App Language</span>
+              <span style="font-size:12px; font-weight:800; color:var(--primary);" id="profile-lang-lbl">English</span>
+            </div>
+            <div class="cart-row" style="cursor:pointer;" onclick="toggleDarkMode()">
+              <span class="cart-item-title">🌓 Dark Mode Theme</span>
+              <span style="font-size:12px; font-weight:800; color:var(--primary);" id="profile-theme-lbl">Auto</span>
+            </div>
+            <div class="cart-row" style="cursor:pointer;" onclick="switchBranch()">
+              <span class="cart-item-title">📍 Preferred Outlet</span>
+              <span style="font-size:12px; font-weight:800; color:var(--primary);" id="profile-branch-lbl">City Light</span>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>📍 Saved Delivery Addresses</span></div>
+            <div class="cart-row">
+              <div>
+                <div class="cart-item-title">🏠 Home</div>
+                <div style="font-size:10.5px; color:var(--text-muted);">Flat 402, Royal Residency, City Light, Surat</div>
+              </div>
+              <span style="font-size:11px; font-weight:800; color:var(--primary); cursor:pointer;">Default</span>
+            </div>
+            <div class="cart-row">
+              <div>
+                <div class="cart-item-title">🏢 Office</div>
+                <div style="font-size:10.5px; color:var(--text-muted);">Tech Hub 5th Floor, VIP Road, Vesu, Surat</div>
+              </div>
+              <span style="font-size:11px; font-weight:700; color:var(--text-muted); cursor:pointer;">Select</span>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>🔐 Account & Session Management</span></div>
+            <div class="cart-row" id="profile-signin-row" style="cursor:pointer;" onclick="openAuthModal()">
+              <span class="cart-item-title">🔑 Sign In / OTP Login</span>
+              <span style="font-size:12px; font-weight:800; color:var(--primary);">Login ➔</span>
+            </div>
+            <div class="cart-row" id="profile-logout-row" style="cursor:pointer;" onclick="logoutCustomer()">
+              <span class="cart-item-title" style="color:var(--danger);">🚪 Logout & Clear Session</span>
+              <span style="font-size:12px; font-weight:800; color:var(--danger);">Logout ➔</span>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="sec-title"><span>💬 Support & Help Center</span></div>
+            <div class="cart-row" style="cursor:pointer;" onclick="triggerToast('📞 Connecting to Support (+91 92170 02598)...')">
+              <span class="cart-item-title">📞 24x7 Customer Support</span>
+              <span style="font-size:12px; font-weight:800; color:var(--primary);">Call ➔</span>
+            </div>
+            <div class="cart-row" style="cursor:pointer;" onclick="triggerToast('📜 Showing Terms & Privacy Policy')">
+              <span class="cart-item-title">📄 Privacy Policy & Terms</span>
+              <span style="font-size:12px; font-weight:800; color:var(--text-muted);">View ➔</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Floating Cart Bar (Bottom Menu Trigger) -->
+      <div class="cart-floating-bar" id="cart-float-bar" style="display:none;" onclick="switchScreen('cart')">
+        <div class="cart-bar-left">
+          <span class="cart-count-badge" id="float-cart-count">2 Items</span>
+          <span class="cart-bar-total" id="float-cart-total">₹350.00</span>
+        </div>
+        <div class="cart-bar-action">
+          <span>View Cart ➔</span>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation Bar -->
+      <nav class="app-bottom-nav">
+        <div class="nav-tab-item active" id="tab-menu" onclick="switchScreen('menu')">
+          <span class="nav-tab-icon">🍽️</span>
+          <span id="t-nav-menu">Menu</span>
+        </div>
+        <div class="nav-tab-item" id="tab-cart" onclick="switchScreen('cart')">
+          <span class="nav-tab-icon">🛒</span>
+          <span id="t-nav-cart">Cart</span>
+        </div>
+        <div class="nav-tab-item" id="tab-tracking" onclick="switchScreen('tracking')">
+          <span class="nav-tab-icon">📍</span>
+          <span id="t-nav-track">Track</span>
+        </div>
+        <div class="nav-tab-item" id="tab-profile" onclick="switchScreen('profile')">
+          <span class="nav-tab-icon">👤</span>
+          <span id="t-nav-profile">Profile</span>
+        </div>
+      </nav>
+
+      <!-- Swipe Home Indicator -->
+      <div class="home-indicator" onclick="switchScreen('menu')"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+/* DATA & STATE */
+const DISHES = [
+  { id: 1, name: "Thalaivaa Special Ghee Roast Dosa", name_ta: "தலீவா நெய் ரோஸ்ட் தோசை", name_hi: "थलइवा स्पेशल घी रोस्ट डोसा", cat: "dosas", price: 180, tag: "Bestseller", icon: "🥞", veg: true, desc: "Golden-crispy fermented rice crepe roasted with pure desi A2 cow ghee, served with 3 traditional chutneys & piping hot drumstick sambar." },
+  { id: 2, name: "Madurai Podi Crispy Masala Dosa", name_ta: "மதுரை பொடி மசாலா தோசை", name_hi: "मदुरै पोड़ी मसाला डोसा", cat: "dosas", price: 210, tag: "Spicy", icon: "🥞", veg: true, desc: "Smothered in fragrant gunpowder podi spice and filled with tempered spiced potato masala." },
+  { id: 3, name: "Mysore Butter Masala Dosa", name_ta: "மைசூர் வெண்ணெய் தோசை", name_hi: "मैसूर बटर मसाला डोसा", cat: "dosas", price: 220, tag: "Popular", icon: "🥞", veg: true, desc: "Lined with authentic red chili-garlic chutney paste and melting Amul butter." },
+  { id: 4, name: "Chettinad Paneer Stuffed Dosa", name_ta: "செட்டிநாடு பன்னீர் தோசை", name_hi: "चेट्टीनाड पनीर डोसा", cat: "dosas", price: 240, tag: "Chef Special", icon: "🥞", veg: true, desc: "Loaded with slow-roasted Chettinad pepper masala and fresh cottage cheese paneer cubes." },
+  { id: 5, name: "Steaming Button Ghee Idlis (14 Pcs)", name_ta: "நெய் மினி இட்லி", name_hi: "घी मिनी इडली (14 नग)", cat: "idlis", price: 140, tag: "Bestseller", icon: "🥣", veg: true, desc: "14 mini melt-in-mouth rice cakes floating in a bowl of aromatic sambar and topped with hot desi ghee." },
+  { id: 6, name: "Medu Vada Platter (2 Pcs)", name_ta: "மொறுமொறு மெதுவடை", name_hi: "क्रिस्पी मेदु वड़ा (2 नग)", cat: "idlis", price: 110, tag: "Crispy", icon: "🍩", veg: true, desc: "Golden-fried urad dal fritters with fresh curry leaves, whole black pepper, and fresh coconut chutney." },
+  { id: 7, name: "Onion Tomato Uttapam", name_ta: "வெங்காய தக்காளி ஊத்தப்பம்", name_hi: "प्याज टमाटर उत्तपम", cat: "uthappam", price: 160, tag: "Popular", icon: "🍳", veg: true, desc: "Thick savory pancake topped with caramelized shallots, juicy tomatoes, and green chillies." },
+  { id: 8, name: "Thalaivaa Royal South Indian Thali", name_ta: "தலீவா அரச விருந்து மீல்ஸ்", name_hi: "थलइवा रॉयल साउथ इंडियन थाली", cat: "meals", price: 299, tag: "Bestseller", icon: "🍛", veg: true, desc: "Complete feast: Sambar, Rasam, Poriyal, Kootu, Appalam, Curd, Rice, Poori, Pickle & Payasam dessert." },
+  { id: 9, name: "Authentic Degree Filter Kaapi", name_ta: "அசல் டிகிரி பில்டர் காபி", name_hi: "ऑथेंटिक डिग्री फ़िल्टर कॉफ़ी", cat: "kaapi", price: 70, tag: "Must Try", icon: "☕", veg: true, desc: "Traditional South Indian chicory blend brewed in brass filters, frothed with rich buffalo milk." },
+  { id: 10, name: "Elaneer Payasam (Tender Coconut)", name_ta: "இளநீர் பாயாசம்", name_hi: "इलानीर पायसम (नारियल)", cat: "sweets", price: 150, tag: "Delicacy", icon: "🍯", veg: true, desc: "Signature chilled dessert crafted from tender coconut pulp, coconut milk, and cardamom essence." }
+];
+
+let cart = {
+  1: 1,
+  9: 2
+};
+
+let currentLang = 'en'; // en, ta, hi
+let currentBranch = 'City Light, Surat';
+let currentCategory = 'all';
+let isDarkMode = false;
+let couponDiscount = 50;
+let volumeLevel = 70;
+
+const I18N = {
+  en: {
+    deliveringTo: "Delivering To",
+    offerTag: "🎉 FESTIVE SPECIAL • 50% OFF",
+    offerTitle: "Authentic South Indian Taste of Tradition",
+    offerDesc: "Use coupon THALAIVAA50 on checkout for instant savings.",
+    navMenu: "Menu",
+    navCart: "Cart",
+    navTrack: "Track",
+    navProfile: "Profile"
+  },
+  ta: {
+    deliveringTo: "டெலிவரி இடம்",
+    offerTag: "🎉 திருவிழா சலுகை • 50% தள்ளுபடி",
+    offerTitle: "பாரம்பரிய தென்னிந்திய சுவை விருந்து",
+    offerDesc: "பில் தொகையில் தள்ளுபடி பெற THALAIVAA50 கூப்பனை பயன்படுத்தவும்.",
+    navMenu: "மெனு",
+    navCart: "கூடை",
+    navTrack: "நிலை",
+    navProfile: "சுயவிவரம்"
+  },
+  hi: {
+    deliveringTo: "डिलीवरी स्थान",
+    offerTag: "🎉 फेस्टीवल ऑफर • 50% छूट",
+    offerTitle: "परंपरागत प्रामाणिक दक्षिण भारतीय स्वाद",
+    offerDesc: "तुरंत छूट पाने के लिए चेकआउट पर THALAIVAA50 कोड लगाएं।",
+    navMenu: "मेन्यू",
+    navCart: "कार्ट",
+    navTrack: "ट्रैकिंग",
+    navProfile: "प्रोफ़ाइल"
+  }
+};
+
+/* INITIALIZATION */
+window.onload = () => {
+  renderDishes();
+  updateCartUI();
+  startClock();
+};
+
+let currentActiveScreen = 'menu';
+
+/* CLOCK */
+function startClock() {
+  function updateTime() {
+    const d = new Date();
+    let h = d.getHours();
+    let m = d.getMinutes();
+    if (m < 10) m = "0" + m;
+    document.getElementById('clock-display').innerText = `${h}:${m}`;
+  }
+  updateTime();
+  setInterval(updateTime, 10000);
+}
+
+/* RENDER DISHES */
+function renderDishes(searchQuery = "") {
+  const container = document.getElementById('dish-list-container');
+  let filtered = DISHES.filter(d => {
+    const matchCat = (currentCategory === 'all' || d.cat === currentCategory);
+    const matchSearch = searchQuery === "" || 
+      d.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      d.desc.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13px;">No items match your search.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(dish => {
+    let title = dish.name;
+    if (currentLang === 'ta') title = dish.name_ta || dish.name;
+    if (currentLang === 'hi') title = dish.name_hi || dish.name;
+
+    const qty = cart[dish.id] || 0;
+    const actionBtn = qty > 0 ? `
+      <div class="qty-pill">
+        <button class="qty-click" onclick="updateItemQty(${dish.id}, -1)">-</button>
+        <span>${qty}</span>
+        <button class="qty-click" onclick="updateItemQty(${dish.id}, 1)">+</button>
+      </div>
+    ` : `
+      <button class="add-cart-btn" onclick="updateItemQty(${dish.id}, 1)">+ ADD</button>
+    `;
+
+    return `
+      <div class="dish-item">
+        <div class="dish-details">
+          <div class="dish-meta-row">
+            <div class="veg-icon"><div class="veg-inner"></div></div>
+            <span class="badge-tag">${dish.tag}</span>
+          </div>
+          <div class="dish-title">${title}</div>
+          <div class="dish-desc-text">${dish.desc}</div>
+          <div class="dish-price-tag">₹${dish.price}</div>
+        </div>
+        <div class="dish-thumb-wrap">
+          <div class="dish-icon-box">${dish.icon}</div>
+          ${actionBtn}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* CART LOGIC */
+function updateItemQty(id, delta) {
+  if (!cart[id]) cart[id] = 0;
+  cart[id] += delta;
+  if (cart[id] <= 0) delete cart[id];
+  
+  renderDishes(document.getElementById('menu-search-input').value);
+  updateCartUI();
+  
+  if (delta > 0) {
+    triggerToast("Item added to cart! 🛒");
+    triggerIslandPulse();
+  }
+}
+
+function clearCart() {
+  cart = {};
+  renderDishes();
+  updateCartUI();
+  triggerToast("Cart cleared");
+}
+
+function updateCartUI() {
+  const itemIds = Object.keys(cart);
+  let totalCount = 0;
+  let subtotal = 0;
+
+  itemIds.forEach(id => {
+    const dish = DISHES.find(d => d.id == id);
+    const count = cart[id];
+    if (dish && count > 0) {
+      totalCount += count;
+      subtotal += (dish.price * count);
+    }
+  });
+
+  const tax = subtotal * 0.05;
+  const discount = (subtotal > 150) ? couponDiscount : 0;
+  const grandTotal = Math.max(0, subtotal + tax - discount);
+
+  // Update floating bar - ONLY show on the menu screen when totalCount > 0
+  const floatBar = document.getElementById('cart-float-bar');
+  if (totalCount > 0 && currentActiveScreen === 'menu') {
+    floatBar.style.display = 'flex';
+    document.getElementById('float-cart-count').innerText = `${totalCount} Item${totalCount > 1 ? 's' : ''}`;
+    document.getElementById('float-cart-total').innerText = `₹${grandTotal.toFixed(2)}`;
+  } else {
+    floatBar.style.display = 'none';
+  }
+
+  // Update Cart Screen
+  const cartContainer = document.getElementById('cart-items-container');
+  if (totalCount === 0) {
+    cartContainer.innerHTML = `
+      <div style="text-align:center; padding:24px 10px; color:var(--text-muted); font-size:12px;">
+        <div style="font-size:32px; margin-bottom:8px;">🛒</div>
+        <div>Your cart is empty.</div>
+        <button onclick="switchScreen('menu')" style="margin-top:10px; background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:8px; font-weight:800; font-size:11px; cursor:pointer;">Browse Menu ➔</button>
+      </div>
+    `;
+  } else {
+    cartContainer.innerHTML = itemIds.map(id => {
+      const dish = DISHES.find(d => d.id == id);
+      const count = cart[id];
+      let title = dish.name;
+      if (currentLang === 'ta') title = dish.name_ta || dish.name;
+      if (currentLang === 'hi') title = dish.name_hi || dish.name;
+
+      return `
+        <div class="cart-row">
+          <div>
+            <div class="cart-item-title">${title}</div>
+            <div style="font-size:11px; color:var(--text-muted);">₹${dish.price} × ${count}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="qty-pill" style="width:68px;">
+              <button class="qty-click" onclick="updateItemQty(${dish.id}, -1)">-</button>
+              <span>${count}</span>
+              <button class="qty-click" onclick="updateItemQty(${dish.id}, 1)">+</button>
+            </div>
+            <div class="cart-item-price">₹${dish.price * count}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('bill-subtotal').innerText = `₹${subtotal.toFixed(2)}`;
+  document.getElementById('bill-tax').innerText = `₹${tax.toFixed(2)}`;
+  document.getElementById('bill-discount').innerText = `-₹${discount.toFixed(2)}`;
+  document.getElementById('bill-grand-total').innerText = `₹${grandTotal.toFixed(2)}`;
+}
+
+async function applyCoupon() {
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  if (!code) return;
+  
+  const subtotal = Object.keys(cart).reduce((sum, id) => {
+    const dish = DISHES.find(d => d.id == id);
+    return sum + (dish ? dish.price * cart[id] : 0);
+  }, 0);
+
+  try {
+    const res = await fetch('/api/v1/coupons/validate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ code: code, subtotal_inr: subtotal })
+    });
+    const data = await res.json();
+    if (data.success) {
+      couponDiscount = data.data.discount_inr || (data.data.discount_amount / 100);
+      triggerToast(`Coupon ${code} Applied! (₹${couponDiscount} OFF)`);
+    } else {
+      if (code === 'THALAIVAA50') {
+        couponDiscount = 50;
+        triggerToast("Coupon THALAIVAA50 Applied! (₹50 OFF)");
+      } else if (code === 'FESTIVE100') {
+        couponDiscount = 100;
+        triggerToast("Coupon FESTIVE100 Applied! (₹100 OFF)");
+      } else {
+        couponDiscount = 0;
+        triggerToast(data.message || "Invalid Coupon Code");
+      }
+    }
+  } catch (err) {
+    if (code === 'THALAIVAA50') {
+      couponDiscount = 50;
+      triggerToast("Coupon THALAIVAA50 Applied! (₹50 OFF)");
+    } else if (code === 'FESTIVE100') {
+      couponDiscount = 100;
+      triggerToast("Coupon FESTIVE100 Applied! (₹100 OFF)");
+    } else {
+      couponDiscount = 0;
+      triggerToast("Invalid Coupon Code");
+    }
+  }
+  updateCartUI();
+}
+
+async function placeOrder() {
+  const authToken = localStorage.getItem('thalaivaa_auth_token');
+  if (!authToken) {
+    triggerToast("🔐 Authentication Required! Please log in to place your order.");
+    openAuthModal();
+    return;
+  }
+
+  const itemIds = Object.keys(cart);
+  if (itemIds.length === 0) {
+    triggerToast("Cart is empty! Add dishes first.");
+    return;
+  }
+  
+  // Format items for API
+  const apiItems = itemIds.map(id => {
+    const dish = DISHES.find(d => d.id == id);
+    return {
+      product_id: dish && dish.uuid ? dish.uuid : null,
+      product_name: dish ? dish.name : "South Indian Dish",
+      quantity: cart[id],
+      unit_price_inr: dish ? dish.price : 150
+    };
+  });
+
+  let orderNum = "THL-" + Math.floor(1000 + Math.random() * 9000);
+
+  try {
+    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + authToken };
+
+    const res = await fetch('/api/v1/orders', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        delivery_name: localStorage.getItem('thalaivaa_user_name') || "Ramesh Patel",
+        delivery_phone: localStorage.getItem('thalaivaa_user_phone') || "+919217002598",
+        delivery_address_line: "Flat 402, Royal Residency, VIP Road",
+        delivery_city: "Surat",
+        delivery_postal: "395007",
+        coupon_code: couponDiscount > 0 ? "THALAIVAA50" : null,
+        items: apiItems
+      })
+    });
+    const data = await res.json();
+    if (data.success && data.data && data.data.order_number) {
+      orderNum = data.data.order_number;
+    } else if (res.status === 401 || res.status === 403) {
+      triggerToast("Session Expired. Please log in again.");
+      logoutCustomer();
+      return;
+    }
+  } catch (err) {
+    console.warn("Backend API unavailable, using generated order reference:", err);
+  }
+
+  // Clear cart on placement
+  cart = {};
+  renderDishes();
+  updateCartUI();
+  
+  const orderTrackLabel = document.getElementById('active-order-num');
+  if (orderTrackLabel) orderTrackLabel.innerText = orderNum;
+
+  triggerToast(`🎉 Order #${orderNum} Placed Successfully!`);
+  triggerIslandPulse(`Order #${orderNum} Live 🛵`);
+  setTimeout(() => {
+    switchScreen('tracking');
+  }, 350);
+}
+
+/* SCREEN NAVIGATION */
+function switchScreen(screenKey) {
+  currentActiveScreen = screenKey;
+  document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab-item').forEach(t => t.classList.remove('active'));
+
+  const targetScreen = document.getElementById(`screen-${screenKey}`);
+  const targetTab = document.getElementById(`tab-${screenKey}`);
+
+  if (targetScreen) targetScreen.classList.add('active');
+  if (targetTab) targetTab.classList.add('active');
+
+  const catScroll = document.getElementById('cat-scroll');
+  const searchBar = document.querySelector('.app-search');
+  const locLabel = document.getElementById('t-delivering-to');
+  const locName = document.getElementById('active-branch-name');
+
+  if (screenKey === 'menu') {
+    catScroll.style.display = 'flex';
+    if (searchBar) searchBar.style.display = 'flex';
+    locLabel.innerText = I18N[currentLang].deliveringTo;
+    locName.innerHTML = `📍 ${currentBranch} ▾`;
+  } else if (screenKey === 'cart') {
+    catScroll.style.display = 'none';
+    if (searchBar) searchBar.style.display = 'none';
+    locLabel.innerText = "Checkout";
+    locName.innerHTML = `🛒 My Order Summary`;
+  } else if (screenKey === 'tracking') {
+    catScroll.style.display = 'none';
+    if (searchBar) searchBar.style.display = 'none';
+    locLabel.innerText = "Live Status";
+    locName.innerHTML = `📍 Order Tracking`;
+  } else if (screenKey === 'profile') {
+    const authToken = localStorage.getItem('thalaivaa_auth_token');
+    if (!authToken) {
+      triggerToast("🔐 Login Required! Please log in to view your profile.");
+      openAuthModal();
+      return;
+    }
+    catScroll.style.display = 'none';
+    if (searchBar) searchBar.style.display = 'none';
+    locLabel.innerText = "Account";
+    locName.innerHTML = `👤 Customer Profile`;
+  }
+
+  // Update floating bar visibility
+  updateCartUI();
+
+  // Animate map if tracking screen
+  if (screenKey === 'tracking') {
+    const driver = document.getElementById('map-driver');
+    if (driver) {
+      driver.style.left = "20%";
+      setTimeout(() => { driver.style.left = "75%"; }, 300);
+    }
+  }
+}
+
+/* CATEGORY FILTER */
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderDishes(document.getElementById('menu-search-input').value);
+}
+
+/* SEARCH */
+function handleSearch(val) {
+  renderDishes(val);
+}
+
+/* THEME TOGGLE */
+function toggleDarkMode() {
+  isDarkMode = !isDarkMode;
+  const container = document.getElementById('app-container');
+  if (isDarkMode) {
+    container.setAttribute('data-theme', 'dark');
+    document.getElementById('profile-theme-lbl').innerText = "Dark Mode";
+    triggerToast("Dark Mode Enabled 🌙");
+  } else {
+    container.removeAttribute('data-theme');
+    document.getElementById('profile-theme-lbl').innerText = "Light Mode";
+    triggerToast("Light Mode Enabled ☀️");
+  }
+}
+
+/* LANGUAGE CYCLE */
+function cycleLanguage() {
+  if (currentLang === 'en') currentLang = 'ta';
+  else if (currentLang === 'ta') currentLang = 'hi';
+  else currentLang = 'en';
+
+  const names = { en: 'English', ta: 'தமிழ்', hi: 'हिंदी' };
+  document.getElementById('current-lang-lbl').innerText = names[currentLang];
+  document.getElementById('profile-lang-lbl').innerText = names[currentLang];
+
+  const t = I18N[currentLang];
+  document.getElementById('t-delivering-to').innerText = t.deliveringTo;
+  document.getElementById('t-offer-tag').innerText = t.offerTag;
+  document.getElementById('t-offer-title').innerText = t.offerTitle;
+  document.getElementById('t-offer-desc').innerText = t.offerDesc;
+  document.getElementById('t-nav-menu').innerText = t.navMenu;
+  document.getElementById('t-nav-cart').innerText = t.navCart;
+  document.getElementById('t-nav-track').innerText = t.navTrack;
+  document.getElementById('t-nav-profile').innerText = t.navProfile;
+
+  renderDishes(document.getElementById('menu-search-input').value);
+  updateCartUI();
+  triggerToast(`Language switched to ${names[currentLang]}`);
+}
+
+/* BRANCH SWITCH */
+function switchBranch() {
+  const branches = ['City Light, Surat', 'Vesu Branch, Surat', 'Adajan Hub, Surat'];
+  let idx = branches.indexOf(currentBranch);
+  idx = (idx + 1) % branches.length;
+  currentBranch = branches[idx];
+  document.getElementById('active-branch-name').innerHTML = `📍 ${currentBranch} ▾`;
+  document.getElementById('cart-branch-lbl').innerText = currentBranch;
+  document.getElementById('profile-branch-lbl').innerText = currentBranch.split(',')[0];
+  triggerToast(`Switched outlet to ${currentBranch}`);
+}
+
+function setOrderType(type, btn) {
+  document.querySelectorAll('.type-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  triggerToast(`Order mode: ${type.toUpperCase()}`);
+}
+
+/* HARDWARE CONTROLS */
+function togglePowerLock() {
+  const lock = document.getElementById('lock-screen');
+  lock.classList.toggle('active');
+}
+
+function adjustVolume(delta) {
+  volumeLevel = Math.max(0, Math.min(100, volumeLevel + delta));
+  const hud = document.getElementById('volume-hud');
+  const bar = document.getElementById('volume-level');
+  bar.style.height = `${volumeLevel}%`;
+  hud.classList.add('visible');
+  clearTimeout(window.volTimer);
+  window.volTimer = setTimeout(() => hud.classList.remove('visible'), 1200);
+}
+
+function toggleDynamicIsland() {
+  const island = document.getElementById('dynamic-island');
+  island.classList.toggle('expanded');
+}
+
+function triggerIslandPulse(text = "Thalaivaa Live") {
+  const island = document.getElementById('dynamic-island');
+  document.getElementById('island-text').innerText = text;
+  island.classList.add('expanded');
+  setTimeout(() => island.classList.remove('expanded'), 2500);
+}
+
+function triggerToast(msg) {
+  const toast = document.getElementById('sim-toast');
+  toast.innerText = msg;
+  toast.style.display = 'block';
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 2000);
+}
+
+function switchDeviceModel(model) {
+  const frame = document.getElementById('device-frame');
+  if (model === 'pixel9') {
+    frame.style.borderRadius = "48px";
+  } else if (model === 'galaxy24') {
+    frame.style.borderRadius = "32px";
+  } else {
+    frame.style.borderRadius = "54px";
+  }
+  triggerToast(`Simulator switched to ${model}`);
+}
+
+function setOrientation(mode) {
+  triggerToast("Portrait View Active");
+}
+
+/* RENDER MODE SWITCHER */
+function setRenderMode(mode) {
+  const iframe = document.getElementById('flutter-viewport-iframe');
+  const btnFlutter = document.getElementById('btn-mode-flutter');
+  const btnStudio = document.getElementById('btn-mode-studio');
+  
+  if (mode === 'flutter') {
+    iframe.style.display = 'block';
+    if (btnFlutter) btnFlutter.classList.add('active');
+    if (btnStudio) btnStudio.classList.remove('active');
+    triggerToast('⚡ Rendering Real Flutter Web App');
+  } else {
+    iframe.style.display = 'none';
+    if (btnFlutter) btnFlutter.classList.remove('active');
+    if (btnStudio) btnStudio.classList.add('active');
+    triggerToast('📱 Rendering Studio Mobile Frame');
+  }
+}
+
+/* AUTOMATIC AUTHENTICATION & LOGIN */
+async function autoAuthenticateCustomer() {
+  if (!localStorage.getItem('thalaivaa_auth_token')) {
+    try {
+      await fetch('/api/v1/auth/otp/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ phone: '+919217002598' })
+      });
+      const res = await fetch('/api/v1/auth/otp/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ phone: '+919217002598', otp: '123456', name: 'Ramesh Patel' })
+      });
+      const data = await res.json();
+      if (data.success && data.token) {
+        localStorage.setItem('thalaivaa_auth_token', data.token);
+        localStorage.setItem('thalaivaa_user_name', data.user.name || 'Ramesh Patel');
+        localStorage.setItem('thalaivaa_user_phone', data.user.phone || '+919217002598');
+        updateAuthUI(data.user.name || 'Ramesh Patel');
+        triggerToast('🔑 Auto-Authenticated with Sanctum Token!');
+      }
+    } catch(e) {
+      console.warn('Auto-auth error:', e);
+    }
+  } else {
+    const name = localStorage.getItem('thalaivaa_user_name') || 'Ramesh Patel';
+    updateAuthUI(name);
+  }
+}
+
+function updateAuthUI(name) {
+  const lbl = document.getElementById('auth-status-label');
+  const signInRow = document.getElementById('profile-signin-row');
+  const logoutRow = document.getElementById('profile-logout-row');
+
+  if (name) {
+    if (lbl) lbl.innerText = `Logged In (${name.split(' ')[0]})`;
+    if (signInRow) signInRow.style.display = 'none';
+    if (logoutRow) logoutRow.style.display = 'flex';
+  } else {
+    if (lbl) lbl.innerText = `Not Logged In`;
+    if (signInRow) signInRow.style.display = 'flex';
+    if (logoutRow) logoutRow.style.display = 'none';
+  }
+}
+
+async function logoutCustomer() {
+  const authToken = localStorage.getItem('thalaivaa_auth_token');
+  if (authToken) {
+    try {
+      await fetch('/api/v1/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + authToken,
+          'Accept': 'application/json'
+        }
+      });
+    } catch (e) {
+      console.warn('Logout API call error:', e);
+    }
+  }
+  localStorage.removeItem('thalaivaa_auth_token');
+  localStorage.removeItem('thalaivaa_user_name');
+  localStorage.removeItem('thalaivaa_user_phone');
+  
+  updateAuthUI(null);
+  triggerToast('🚪 Logged Out Successfully. Please log in to place orders.');
+  if (currentActiveScreen === 'profile') {
+    switchScreen('menu');
+  }
+}
+
+function openAuthModal() {
+  document.getElementById('auth-modal-overlay').style.display = 'flex';
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal-overlay').style.display = 'none';
+}
+
+async function requestOtpCode() {
+  const phone = document.getElementById('auth-phone-input').value.trim();
+  if (!phone) {
+    triggerToast('Please enter mobile phone number');
+    return;
+  }
+  try {
+    const res = await fetch('/api/v1/auth/otp/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ phone: phone })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('otp-step-1').style.display = 'none';
+      document.getElementById('otp-step-2').style.display = 'block';
+      triggerToast('📲 OTP Sent! (Dev OTP: 123456)');
+    } else {
+      triggerToast(data.message || 'OTP Send Failed');
+    }
+  } catch(e) {
+    triggerToast('Network error during OTP dispatch');
+  }
+}
+
+async function submitOtpVerify() {
+  const phone = document.getElementById('auth-phone-input').value.trim();
+  const otp = document.getElementById('auth-otp-input').value.trim();
+  const name = document.getElementById('auth-name-input').value.trim() || 'Ramesh Patel';
+
+  try {
+    const res = await fetch('/api/v1/auth/otp/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ phone: phone, otp: otp, name: name })
+    });
+    const data = await res.json();
+    if (data.success && data.token) {
+      localStorage.setItem('thalaivaa_auth_token', data.token);
+      localStorage.setItem('thalaivaa_user_name', data.user.name || name);
+      localStorage.setItem('thalaivaa_user_phone', data.user.phone || phone);
+      updateAuthUI(data.user.name || name);
+      closeAuthModal();
+      triggerToast('🎉 Logged In Successfully!');
+    } else {
+      triggerToast(data.message || 'Invalid OTP Code');
+    }
+  } catch(e) {
+    triggerToast('Authentication Verification Error');
+  }
+}
+
+// Auto-run on initialization
+window.addEventListener('DOMContentLoaded', () => {
+  autoAuthenticateCustomer();
+});
+</script>
+
+<!-- OTP Authentication Modal -->
+<div id="auth-modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(11,15,23,0.85); backdrop-filter:blur(8px); z-index:99999; align-items:center; justify-content:center;">
+  <div style="background:#1E293B; border:1px solid #334155; border-radius:24px; width:90%; max-width:400px; padding:24px; color:white; box-shadow:0 20px 50px rgba(0,0,0,0.7); position:relative;">
+    <button onclick="closeAuthModal()" style="position:absolute; right:16px; top:16px; background:none; border:none; color:#94A3B8; font-size:18px; cursor:pointer;">✕</button>
+    <div style="text-align:center; margin-bottom:16px;">
+      <div style="width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg, #FF6B00, #FFA500); display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 8px;">🔐</div>
+      <h3 style="font-size:18px; font-weight:800; color:white;">Customer SaaS Login</h3>
+      <p style="font-size:12px; color:#94A3B8; margin-top:4px;">Authenticate with OTP & Sanctum Bearer Token</p>
+    </div>
+
+    <!-- Step 1: Phone Request -->
+    <div id="otp-step-1">
+      <label style="font-size:11px; font-weight:700; color:#CBD5E1; display:block; margin-bottom:6px;">Full Name</label>
+      <input type="text" id="auth-name-input" value="Ramesh Patel" placeholder="Enter Full Name" style="width:100%; padding:10px 12px; border-radius:10px; border:1px solid #334155; background:#0F172A; color:white; font-size:13px; margin-bottom:12px; box-sizing:border-box;">
+      
+      <label style="font-size:11px; font-weight:700; color:#CBD5E1; display:block; margin-bottom:6px;">Mobile Phone Number</label>
+      <input type="text" id="auth-phone-input" value="+919217002598" placeholder="+91 92170 02598" style="width:100%; padding:10px 12px; border-radius:10px; border:1px solid #334155; background:#0F172A; color:white; font-size:13px; margin-bottom:16px; box-sizing:border-box;">
+
+      <button onclick="requestOtpCode()" style="width:100%; background:linear-gradient(135deg, #FF6B00, #FFA500); color:white; border:none; padding:12px; border-radius:12px; font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 4px 14px rgba(255,107,0,0.4);">Send OTP Code ➔</button>
+    </div>
+
+    <!-- Step 2: OTP Verify -->
+    <div id="otp-step-2" style="display:none;">
+      <label style="font-size:11px; font-weight:700; color:#CBD5E1; display:block; margin-bottom:6px;">Enter 6-Digit OTP Code</label>
+      <input type="text" id="auth-otp-input" value="123456" placeholder="123456" style="width:100%; padding:10px 12px; border-radius:10px; border:1px solid #334155; background:#0F172A; color:white; font-size:16px; letter-spacing:4px; text-align:center; font-weight:800; margin-bottom:16px; box-sizing:border-box;">
+
+      <button onclick="submitOtpVerify()" style="width:100%; background:#10B981; color:white; border:none; padding:12px; border-radius:12px; font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 4px 14px rgba(16,185,129,0.4);">Verify & Login ➔</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

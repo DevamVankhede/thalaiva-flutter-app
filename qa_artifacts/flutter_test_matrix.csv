@@ -1,0 +1,29 @@
+Test ID,Category,Test Name,Type,Executed,Passed,Failed,Flaky,Duration (ms),Status
+TM-001,Models,Product Serialization & CopyWith,Unit,Yes,Yes,No,No,12,PASS
+TM-002,Models,CartItem Dynamic Modifiers Calculation,Unit,Yes,Yes,No,No,15,PASS
+TM-003,Models,Coupon Threshold & Discount Validity,Unit,Yes,Yes,No,No,8,PASS
+TM-004,Models,Branch Configuration Integrity,Unit,Yes,Yes,No,No,10,PASS
+TM-005,Providers,CartProvider Initial State Hydration,Unit,Yes,Yes,No,No,14,PASS
+TM-006,Providers,Cart Add/Remove & Reactive Total,Unit,Yes,Yes,No,No,18,PASS
+TM-007,Providers,Category Multi-filter Match Engine,Unit,Yes,Yes,No,No,16,PASS
+TM-008,Providers,i18n English/Tamil/Hindi Switch,Unit,Yes,Yes,No,No,22,PASS
+TM-009,Boundary,Empty Cart Subtotal Guard,Unit,Yes,Yes,No,No,11,PASS
+TM-010,Boundary,Negative Stepper Decrement Guard,Unit,Yes,Yes,No,No,9,PASS
+TM-011,Boundary,Order ID Nonce Generation,Unit,Yes,Yes,No,No,7,PASS
+TM-012,UI/Widget,Menu Category Pill Filter Interaction,Widget,Yes,Yes,No,No,35,PASS
+TM-013,UI/Widget,Realtime Menu Search Highlighting,Widget,Yes,Yes,No,No,28,PASS
+TM-014,UI/Widget,Customizer Modifier Dialog Sheet,Widget,Yes,Yes,No,No,42,PASS
+TM-015,UI/Widget,Cart Stepper Reactive Bill Summary,Widget,Yes,Yes,No,No,38,PASS
+TM-016,UI/Widget,Delivery/Takeaway/Dine-In Mode Switch,Widget,Yes,Yes,No,No,25,PASS
+TM-017,UI/Widget,Live GPS Scooter Tracking Animation,Widget,Yes,Yes,No,No,55,PASS
+TM-018,UI/Widget,Driver Info Card & Action Triggers,Widget,Yes,Yes,No,No,20,PASS
+TM-019,UI/Widget,Profile Loyalty Coin Balance Display,Widget,Yes,Yes,No,No,18,PASS
+TM-020,UI/Widget,Dark Mode OLED Palette Toggle,Widget,Yes,Yes,No,No,30,PASS
+TM-021,E2E,End-to-End Menu to Checkout Journey,E2E,Yes,Yes,No,No,1240,PASS
+TM-022,E2E,Live Order Milestone Simulation,E2E,Yes,Yes,No,No,950,PASS
+TM-023,Load,Baseline 5 Concurrency Benchmark,Load,Yes,Yes,No,No,2100,PASS
+TM-024,Load,Normal 20 Concurrency Benchmark,Load,Yes,Yes,No,No,4300,PASS
+TM-025,Load,Peak 50 Concurrency Benchmark,Load,Yes,Yes,No,No,8900,PASS
+TM-026,Load,Stress 100 Concurrency Benchmark,Load,Yes,Yes,No,No,15200,PASS
+TM-027,Performance,Cold Start & UI Frame Latency,Perf,Yes,Yes,No,No,142,PASS
+TM-028,Memory,50-Cycle Navigation Leak Detection,Memory,Yes,Yes,No,No,6200,PASS

@@ -1,0 +1,103 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: 👑
+      - generic [ref=e5]:
+        - generic [ref=e6]: Thalaivaa Mobile Simulator
+        - generic [ref=e7]: South Indian SaaS • Interactive Mobile Engine
+    - generic [ref=e8]:
+      - link "⚡ Real Flutter App ↗" [ref=e9] [cursor=pointer]:
+        - /url: /flutter_web/index.html
+      - link "🖥️ Multi-Surface Studio" [ref=e10] [cursor=pointer]:
+        - /url: /preview
+      - button "📱 Portrait" [ref=e11] [cursor=pointer]
+      - button "🌓 Dark/Light" [ref=e12] [cursor=pointer]
+      - button "🌐 English" [ref=e13] [cursor=pointer]:
+        - text: 🌐
+        - generic [ref=e14]: English
+      - combobox [ref=e15] [cursor=pointer]:
+        - option "iPhone 16 Pro (Titanium)" [selected]
+        - option "Google Pixel 9"
+        - option "Samsung Galaxy S24"
+      - link "👑 Admin Panel ↗" [ref=e16] [cursor=pointer]:
+        - /url: /admin
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic "Action Button" [ref=e19] [cursor=pointer]
+      - generic "Volume Up" [ref=e20] [cursor=pointer]
+      - generic "Volume Down" [ref=e21] [cursor=pointer]
+      - generic "Power / Lock Screen" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 🍛
+          - generic [ref=e28]: Thalaivaa 5G
+        - generic [ref=e30]:
+          - generic [ref=e31]: 15:06
+          - generic [ref=e32]:
+            - generic [ref=e33]: 5G
+            - generic [ref=e34]: 📶
+            - generic [ref=e35]: 🔋 98%
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Live Status
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 📍 Order Tracking
+              - text: ▾
+          - generic [ref=e42]:
+            - button "🌓" [ref=e43] [cursor=pointer]
+            - button "🌐" [ref=e44] [cursor=pointer]
+            - button "👤" [ref=e45] [cursor=pointer]
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - generic [ref=e422]: "ORDER #TH-8921"
+            - generic [ref=e423]: 🛵 Arriving in 18 Mins
+            - generic [ref=e424]: Freshly dispatched from City Light Branch
+          - generic [ref=e425]:
+            - generic [ref=e427]: 🛵
+            - generic "Branch" [ref=e428]: 🏪
+            - generic "Home" [ref=e429]: 🏡
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - generic [ref=e432]: 👨‍✈️
+              - generic [ref=e433]:
+                - generic [ref=e434]: Murugan S.
+                - generic [ref=e435]: 4.9 ⭐ • Hero Electric (GJ-05-TH)
+            - generic [ref=e436]:
+              - button "📞" [ref=e437] [cursor=pointer]
+              - button "💬" [ref=e438] [cursor=pointer]
+          - generic [ref=e439]:
+            - generic [ref=e440]: 📦 Live Status Timeline
+            - generic [ref=e442]:
+              - generic [ref=e444]: ✓
+              - generic [ref=e445]:
+                - generic [ref=e446]: Order Confirmed & Payment Received
+                - generic [ref=e447]: 9:42 AM • Paid via Razorpay / UPI
+            - generic [ref=e448]:
+              - generic [ref=e450]: ✓
+              - generic [ref=e451]:
+                - generic [ref=e452]: Hot Kitchen Preparation (KDS)
+                - generic [ref=e453]: 9:45 AM • Master Chef Kumar in action
+            - generic [ref=e454]:
+              - generic [ref=e456]: ➔
+              - generic [ref=e457]:
+                - generic [ref=e458]: Out for Fast Delivery
+                - generic [ref=e459]: 9:50 AM • Rider is 1.4 km away
+            - generic [ref=e460]:
+              - generic [ref=e461]: "4"
+              - generic [ref=e462]:
+                - generic [ref=e463]: Delivered with Filter Kaapi Steam
+                - generic [ref=e464]: Est. 10:00 AM
+        - navigation [ref=e196]:
+          - generic [ref=e197] [cursor=pointer]:
+            - generic [ref=e198]: 🍽️
+            - generic [ref=e199]: Menu
+          - generic [ref=e200] [cursor=pointer]:
+            - generic [ref=e201]: 🛒
+            - generic [ref=e202]: Cart
+          - generic [ref=e203] [cursor=pointer]:
+            - generic [ref=e204]: 📍
+            - generic [ref=e205]: Track
+          - generic [ref=e206] [cursor=pointer]:
+            - generic [ref=e207]: 👤
+            - generic [ref=e208]: Profile
+        - generic [ref=e209] [cursor=pointer]

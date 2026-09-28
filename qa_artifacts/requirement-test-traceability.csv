@@ -1,0 +1,9 @@
+Requirement ID,Feature Description,Unit Tests,Widget Tests,Integration/E2E,Load Test,Status
+REQ-001,Authentic South Indian Menu Catalog,TM-001;TM-007,TM-012;TM-013,TM-021,TM-023,COVERED & VERIFIED
+REQ-002,Reactive Cart & Add-on Modifiers,TM-002;TM-006,TM-014;TM-015,TM-021,TM-024,COVERED & VERIFIED
+REQ-003,Promo Coupon Validation (THALAIVAA50),TM-003,TM-015,TM-021,N/A,COVERED & VERIFIED
+REQ-004,Multi-Branch Outlet Selection,TM-004,TM-016,TM-021,TM-023,COVERED & VERIFIED
+REQ-005,Live Order GPS & Kitchen Milestone Tracker,TM-011,TM-017;TM-018,TM-022,TM-025,COVERED & VERIFIED
+REQ-006,Multilingual Support (EN / TA / HI),TM-008,TM-012,TM-021,N/A,COVERED & VERIFIED
+REQ-007,Dark Mode & Accessibility Theme Toggle,TM-020,TM-020,TM-021,N/A,COVERED & VERIFIED
+REQ-008,Backend Scalability & High Concurrency,N/A,N/A,N/A,TM-023;TM-024;TM-025;TM-026,COVERED & VERIFIED

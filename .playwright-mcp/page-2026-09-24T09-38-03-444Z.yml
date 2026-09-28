@@ -1,0 +1,41 @@
+- generic [ref=f1e1]:
+  - main [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - generic [ref=f1e7]:
+          - generic [ref=f1e8]: 👑 Thalaivaa Restaurant SaaS
+          - heading "Sign in" [level=1] [ref=f1e9]
+        - generic [ref=f1e10]:
+          - generic [ref=f1e11]:
+            - generic [ref=f1e14]:
+              - generic [ref=f1e17]:
+                - text: Email address
+                - superscript [ref=f1e18]: "*"
+              - textbox "Email address*" [active] [ref=f1e22]
+            - generic [ref=f1e25]:
+              - generic [ref=f1e28]:
+                - text: Password
+                - superscript [ref=f1e29]: "*"
+              - generic [ref=f1e31]:
+                - textbox "Password*" [ref=f1e33]
+                - generic [ref=f1e35]:
+                  - button "Show password" [ref=f1e36] [cursor=pointer]
+                  - button "Hide password" [ref=f1e41] [cursor=pointer]
+            - generic [ref=f1e50]:
+              - checkbox "Remember me" [ref=f1e51]
+              - generic [ref=f1e52]: Remember me
+          - button "Sign in" [ref=f1e55] [cursor=pointer]
+      - generic:
+        - generic:
+          - dialog:
+            - generic [ref=f1e61] [cursor=pointer]
+      - generic:
+        - generic:
+          - dialog:
+            - generic [ref=f1e64] [cursor=pointer]
+      - generic:
+        - generic:
+          - dialog:
+            - generic [ref=f1e67] [cursor=pointer]
+  - generic:
+    - status

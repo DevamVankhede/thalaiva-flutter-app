@@ -1,0 +1,37 @@
+# =======================================================
+# Agent Sandbox Container Environment
+# Provides an isolated test runner & security sandbox
+# for autonomous agents to execute test cases safely.
+# =======================================================
+FROM php:8.3-cli-alpine
+
+RUN apk add --no-cache \
+    postgresql-dev \
+    sqlite-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    curl \
+    git \
+    python3 \
+    py3-pip \
+    bash \
+    shadow \
+    && docker-php-ext-install pdo pdo_pgsql pdo_sqlite zip
+
+# Install Composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /sandbox
+
+# Non-root user setup
+RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
+
+# Set environment
+ENV APP_ENV=testing
+ENV DB_CONNECTION=sqlite
+ENV DB_DATABASE=:memory:
+
+USER www-data
+
+CMD ["php", "artisan", "test"]

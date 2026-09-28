@@ -1,0 +1,119 @@
+{
+  "version": "1.0.0",
+  "name": "Thalaivaa Design System Tokens",
+  "color": {
+    "primary": {
+      "50": {
+        "value": "#FFF7ED"
+      },
+      "100": {
+        "value": "#FFF3E0"
+      },
+      "500": {
+        "value": "#FF6B00",
+        "type": "color",
+        "description": "Brand Saffron / Amber"
+      },
+      "600": {
+        "value": "#E05D00",
+        "type": "color"
+      },
+      "700": {
+        "value": "#C24E00",
+        "type": "color"
+      }
+    },
+    "secondary": {
+      "800": {
+        "value": "#2D2D44",
+        "type": "color"
+      },
+      "900": {
+        "value": "#1E1E2E",
+        "type": "color",
+        "description": "Obsidian Slate Header"
+      }
+    },
+    "accent": {
+      "gold": {
+        "value": "#FFB800",
+        "type": "color"
+      },
+      "turmeric": {
+        "value": "#FFA500",
+        "type": "color"
+      }
+    },
+    "semantic": {
+      "veg": {
+        "value": "#10B981",
+        "type": "color"
+      },
+      "nonVeg": {
+        "value": "#EF4444",
+        "type": "color"
+      },
+      "success": {
+        "value": "#10B981",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#F59E0B",
+        "type": "color"
+      }
+    },
+    "surface": {
+      "background": {
+        "value": "#F8F9FA",
+        "type": "color"
+      },
+      "card": {
+        "value": "#FFFFFF",
+        "type": "color"
+      },
+      "border": {
+        "value": "#E5E7EB",
+        "type": "color"
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "value": "'Inter', -apple-system, sans-serif"
+    },
+    "fontSize": {
+      "caption": {
+        "value": "10px"
+      },
+      "small": {
+        "value": "12px"
+      },
+      "body": {
+        "value": "14px"
+      },
+      "subtitle": {
+        "value": "16px"
+      },
+      "title": {
+        "value": "18px"
+      },
+      "headline": {
+        "value": "24px"
+      }
+    }
+  },
+  "borderRadius": {
+    "sm": {
+      "value": "6px"
+    },
+    "md": {
+      "value": "12px"
+    },
+    "lg": {
+      "value": "16px"
+    },
+    "full": {
+      "value": "9999px"
+    }
+  }
+}

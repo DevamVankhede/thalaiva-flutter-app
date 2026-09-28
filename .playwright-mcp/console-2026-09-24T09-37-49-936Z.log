@@ -1,0 +1,993 @@
+[   12595ms] [ERROR] Loading the stylesheet 'https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap' violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked. @ http://127.0.0.1:8000/admin/login:64
+[   13379ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{ isProcessing: false }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13381ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (isProcessing) $event.preventDefault()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13382ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isProcessing = true"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13383ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isProcessing = false"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13384ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{}"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13384ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.livewireId !== 'Ymfuy8CyMQZjDjXBlvbd') {
+                return
+            }
+
+            $nextTick(() => {
+                let error = $el.querySelector('[data-validation-error]')
+
+                if (! error) {
+                    return
+                }
+
+                let elementToExpand = error
+
+                while (elementToExpand) {
+                    elementToExpand.dispatchEvent(new CustomEvent('expand'))
+
+                    elementToExpand = elementToExpand.parentNode
+                }
+
+                setTimeout(
+                    () =>
+                        error.closest('[data-field-wrapper]').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                            inline: 'start',
+                        }),
+                    200,
+                )
+        })"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13387ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{ isPasswordRevealed: false }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13388ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isPasswordRevealed ? 'text' : 'password'"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13389ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "! isPasswordRevealed"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13390ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isPasswordRevealed = true"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13390ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isPasswordRevealed"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13391ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isPasswordRevealed = false"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13392ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{
+            form: null,
+            isProcessing: false,
+            processingMessage: null,
+        }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13392ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{ 'enabled:opacity-70 enabled:cursor-wait': isProcessing }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13393ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isProcessing"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13394ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "
+            form = $el.closest('form')
+
+            form?.addEventListener('form-processing-started', (event) => {
+                isProcessing = true
+                processingMessage = event.detail.message
+            })
+
+            form?.addEventListener('form-processing-finished', () => {
+                isProcessing = false
+            })
+        "
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13395ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "! isProcessing"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13396ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "processingMessage"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13397ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{
+        isOpen: false,
+
+        livewire: null,
+
+        close: function () {
+            this.isOpen = false
+
+            if (! this.$refs.modalContainer.isConnected) {
+                return
+            }
+
+            this.$refs.modalContainer.dispatchEvent(
+                new CustomEvent('modal-closed', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-action' } }),
+            )
+        },
+
+        open: function () {
+            this.$nextTick(() => {
+                this.isOpen = true
+
+                
+                this.$refs.modalContainer.dispatchEvent(
+                    new CustomEvent('modal-opened', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-action' } }),
+                )
+            })
+        },
+    }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13398ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{
+        'fi-modal-open': isOpen,
+    }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13399ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-action') close()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13399ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-action') open()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13400ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isOpen"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13402ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "
+                        document.activeElement.selectionStart === undefined &&
+                            document.activeElement.selectionEnd === undefined &&
+                            $dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-action' })
+                    "
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13403ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd') && $wire.mountedActions.length) open()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13403ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (!$event.detail?.id?.startsWith('Ymfuy8CyMQZjDjXBlvbd-')) {
+                    return
+                }
+
+                const mountedActionShouldOpenModal = false
+
+
+                if (! mountedActionShouldOpenModal) {
+                    return
+                }
+
+                if ($wire.mountedFormComponentActions.length) {
+                    return
+                }
+
+                $wire.unmountAction(false, false)"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13403ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd') close()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13404ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{ isShown: false }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13405ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "
+                        $nextTick(() => {
+                            isShown = isOpen
+                            $watch('isOpen', () => (isShown = isOpen))
+                        })
+                    "
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13405ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "isShown"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13406ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "$dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-action' })"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13406ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{
+        isOpen: false,
+
+        livewire: null,
+
+        close: function () {
+            this.isOpen = false
+
+            if (! this.$refs.modalContainer.isConnected) {
+                return
+            }
+
+            this.$refs.modalContainer.dispatchEvent(
+                new CustomEvent('modal-closed', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-infolist-action' } }),
+            )
+        },
+
+        open: function () {
+            this.$nextTick(() => {
+                this.isOpen = true
+
+                
+                this.$refs.modalContainer.dispatchEvent(
+                    new CustomEvent('modal-opened', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-infolist-action' } }),
+                )
+            })
+        },
+    }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13407ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-infolist-action') close()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13407ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-infolist-action') open()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13408ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "
+                        document.activeElement.selectionStart === undefined &&
+                            document.activeElement.selectionEnd === undefined &&
+                            $dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-infolist-action' })
+                    "
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13408ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd') && $wire.mountedInfolistActions.length) open()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13408ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (!$event.detail?.id?.startsWith('Ymfuy8CyMQZjDjXBlvbd-')) {
+                    return
+                }
+
+                const mountedInfolistActionShouldOpenModal = false
+
+
+                if (! mountedInfolistActionShouldOpenModal) {
+                    return
+                }
+
+                if ($wire.mountedFormComponentActions.length) {
+                    return
+                }
+
+                $wire.unmountInfolistAction(false, false)"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13409ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "$dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-infolist-action' })"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13410ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "{
+        isOpen: false,
+
+        livewire: null,
+
+        close: function () {
+            this.isOpen = false
+
+            if (! this.$refs.modalContainer.isConnected) {
+                return
+            }
+
+            this.$refs.modalContainer.dispatchEvent(
+                new CustomEvent('modal-closed', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-form-component-action' } }),
+            )
+        },
+
+        open: function () {
+            this.$nextTick(() => {
+                this.isOpen = true
+
+                
+                this.$refs.modalContainer.dispatchEvent(
+                    new CustomEvent('modal-opened', { detail: { id: 'Ymfuy8CyMQZjDjXBlvbd-form-component-action' } }),
+                )
+            })
+        },
+    }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13410ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-form-component-action') close()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13410ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if ($event.detail.id === 'Ymfuy8CyMQZjDjXBlvbd-form-component-action') open()"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13411ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "
+                        document.activeElement.selectionStart === undefined &&
+                            document.activeElement.selectionEnd === undefined &&
+                            $dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-form-component-action' })
+                    "
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13412ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "if (!$event.detail?.id?.startsWith('Ymfuy8CyMQZjDjXBlvbd-')) {
+                    return
+                }
+
+                const mountedFormComponentActionShouldOpenModal = false
+
+
+                if (mountedFormComponentActionShouldOpenModal) {
+                    $wire.unmountFormComponentAction(false, false)
+                }"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13412ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "$dispatch('close-modal', { id: 'Ymfuy8CyMQZjDjXBlvbd-form-component-action' })"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[   13422ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13423ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13423ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13423ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13424ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13424ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13428ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13428ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at handler2 (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3696:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13428ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3755:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13428ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13429ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3755:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13429ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13429ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13429ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at handler2 (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3696:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13429ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at handler2 (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3696:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13440ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3653:37
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+[   13443ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3755:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13443ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3658:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13445ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13445ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at handler2 (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3696:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13445ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Alpine3.directive.Alpine3.skipDuringClone.expression.expression (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:6620:23)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13447ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3653:37
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+[   13448ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3755:22)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+    at deferHandlingDirectives (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1380:5)
+[   13448ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13449ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13449ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13449ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13449ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13451ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13451ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13451ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13451ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3728:17)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13451ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13452ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13452ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13452ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[   13452ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:3996:35
+    at Function.<anonymous> (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:2007:58)
+    at flushHandlers (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1372:48)
+    at stopDeferring (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1377:7)
+[  504702ms] [WARNING] Alpine Expression Error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+
+Expression: "$wire.authenticate"
+
+ JSHandle@node @ http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1178
+[  504717ms] EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self' 'unsafe-inline'".
+
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1239:21)
+    at generateFunctionFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1249:16)
+    at generateEvaluatorFromString (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1254:16)
+    at normalEvaluator (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1215:111)
+    at evaluateLater (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1200:12)
+    at Object.evaluate (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:1196:5)
+    at http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:10530:28
+    at callAndClearComponentDebounces (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:10513:5)
+    at execute (http://127.0.0.1:8000/vendor/livewire/livewire.js?id=d17cab3a:10529:11)

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thalaivaa - Customer Mobile App (SaaS Interactive Prototype)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background: #0B0F19; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #1E293B; }
+body.dark-mode { color: #F8FAFC; }
+.device-frame { width: 390px; height: 844px; background: #F8FAFC; border-radius: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.6); overflow: hidden; display: flex; flex-direction: column; border: 8px solid #1E293B; position: relative; transition: background 0.3s; }
+body.dark-mode .device-frame { background: #10141D; border-color: #334155; }
+
+/* Status Bar */
+.status-bar { height: 44px; background: #FF6B00; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; color: white; font-size: 13px; font-weight: 700; }
+
+/* Header */
+.header { background: linear-gradient(135deg, #FF6B00, #E05D00); padding: 12px 16px 14px; color: white; }
+.outlet-row { display: flex; justify-content: space-between; align-items: center; }
+.outlet-name { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 4px; }
+.outlet-meta { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+.theme-btn { background: rgba(255,255,255,0.25); border: none; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; }
+
+/* Search Box */
+.search-box { margin-top: 10px; background: white; border-radius: 12px; display: flex; align-items: center; padding: 8px 12px; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+body.dark-mode .search-box { background: #1A2230; color: white; }
+.search-box input { border: none; outline: none; width: 100%; font-size: 12px; color: #0F172A; background: transparent; }
+body.dark-mode .search-box input { color: white; }
+
+/* Quick Filters */
+.quick-filters { display: flex; gap: 8px; padding: 10px 16px 6px; overflow-x: auto; align-items: center; }
+.quick-pill { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; background: white; border: 1px solid #E2E8F0; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
+body.dark-mode .quick-pill { background: #1A2230; border-color: #2D3748; color: #E2E8F0; }
+.quick-pill.active-veg { background: #E8F8F2; color: #00A86B; border-color: #00A86B; }
+.quick-pill.active-best { background: #FFF8E7; color: #D97706; border-color: #D97706; }
+.veg-box { width: 12px; height: 12px; border: 1.5px solid #00A86B; border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+.veg-dot { width: 5px; height: 5px; background: #00A86B; border-radius: 50%; }
+
+/* Category Pills */
+.categories-bar { display: flex; gap: 8px; padding: 4px 16px 8px; overflow-x: auto; }
+.cat-pill { padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; background: white; border: 1px solid #E2E8F0; white-space: nowrap; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; color: #475569; }
+body.dark-mode .cat-pill { background: #1A2230; border-color: #2D3748; color: #94A3B8; }
+.cat-pill.active { background: linear-gradient(135deg, #FF6B00, #E05D00); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(255,107,0,0.35); }
+.cat-count { font-size: 9px; padding: 2px 6px; border-radius: 10px; background: rgba(0,0,0,0.06); }
+.cat-pill.active .cat-count { background: rgba(255,255,255,0.3); color: white; }
+
+/* Content Area */
+.content { flex: 1; overflow-y: auto; padding: 8px 16px 80px; }
+
+/* Banner */
+.hero-banner { background: linear-gradient(135deg, #1E1B4B, #311042); border-radius: 14px; padding: 12px 14px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border: 1px solid rgba(255,107,0,0.3); }
+.hero-tag { background: #FF6B00; color: white; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
+.hero-title { font-size: 13px; font-weight: 800; }
+.hero-sub { font-size: 11px; color: #FFB800; font-weight: 600; margin-top: 2px; }
+
+/* Dish Cards */
+.dish-card { background: white; border-radius: 14px; padding: 12px; display: flex; gap: 12px; margin-bottom: 10px; border: 1px solid #E2E8F0; box-shadow: 0 2px 6px rgba(0,0,0,0.03); transition: all 0.2s; }
+body.dark-mode .dish-card { background: #1A2230; border-color: #2D3748; }
+.dish-info { flex: 1; }
+.dish-header { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.rating-text { font-size: 11px; font-weight: 700; color: #64748B; }
+body.dark-mode .rating-text { color: #94A3B8; }
+.bestseller-badge { background: #FFF8E7; color: #D97706; font-size: 8px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+.dish-name { font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 2px; }
+body.dark-mode .dish-name { color: #F8FAFC; }
+.dish-desc { font-size: 10.5px; color: #64748B; line-height: 1.3; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+body.dark-mode .dish-desc { color: #94A3B8; }
+.dish-price { font-size: 13px; font-weight: 800; color: #FF6B00; }
+.dish-media { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.dish-icon { width: 68px; height: 68px; background: #FFF7ED; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 32px; }
+body.dark-mode .dish-icon { background: #10141D; }
+.add-btn { background: #FF6B00; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; box-shadow: 0 2px 6px rgba(255,107,0,0.3); transition: all 0.2s; }
+.add-btn:hover { background: #E05D00; }
+.qty-stepper { display: flex; align-items: center; background: #FF6B00; border-radius: 8px; color: white; font-size: 12px; font-weight: 800; }
+.qty-btn { background: none; border: none; color: white; font-weight: 800; padding: 4px 8px; cursor: pointer; font-size: 14px; }
+
+/* Bottom Floating Tray */
+.floating-tray { position: absolute; bottom: 64px; left: 12px; right: 12px; background: #0F172A; color: white; padding: 12px 16px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,107,0,0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.4); cursor: pointer; }
+.tray-badge { background: #FF6B00; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 6px; }
+
+/* Bottom Nav */
+.bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; height: 58px; background: white; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-around; align-items: center; }
+body.dark-mode .bottom-nav { background: #1A2230; border-color: #2D3748; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #64748B; font-size: 10px; font-weight: 600; cursor: pointer; }
+.nav-item.active { color: #FF6B00; }
+</style>
+</head>
+<body>
+<div class="device-frame">
+  <!-- Status Bar -->
+  <div class="status-bar"><span>9:41</span><span>Surat • 5G</span></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="outlet-row">
+      <div>
+        <div class="outlet-name">📍 Thalaivaa - City Light Town ▾</div>
+        <div class="outlet-meta">20-25 min delivery • ₹50 min order</div>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+    </div>
+    <div class="search-box">
+      <span>🔍</span>
+      <input id="searchInput" type="text" placeholder="Search Dosas, Idlis, Filter Kaapi, Thali..." oninput="applyFilters()">
+    </div>
+  </div>
+
+  <!-- Quick Filter Pills -->
+  <div class="quick-filters">
+    <div id="vegPill" class="quick-pill" onclick="toggleVeg()">
+      <div class="veg-box"><div class="veg-dot"></div></div>
+      <span>Pure Veg</span>
+    </div>
+    <div id="bestPill" class="quick-pill" onclick="toggleBestseller()">
+      <span>⭐ Bestsellers</span>
+    </div>
+  </div>
+
+  <!-- Category Pills (MATCHED EXACTLY TO 30 DISHES) -->
+  <div class="categories-bar" id="categoriesBar">
+    <!-- Populated via JS -->
+  </div>
+
+  <!-- Content -->
+  <div class="content" id="dishList">
+    <!-- Banner -->
+    <div class="hero-banner">
+      <div>
+        <span class="hero-tag">AUTHENTIC CHETTINAD</span>
+        <div class="hero-title">Weekend Food Festival</div>
+        <div class="hero-sub">Flat ₹50 OFF with code THALAIVAA50</div>
+      </div>
+      <div style="font-size: 36px;">🥘</div>
+    </div>
+    <!-- Dishes injected by JS -->
+  </div>
+
+  <!-- Floating Tray Dock -->
+  <div id="floatingTray" class="floating-tray" style="display:none;" onclick="alert('Food Tray: ' + cartCount + ' items. Grand Total: ₹' + cartTotal)">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span class="tray-badge" id="trayCount">0 ITEMS</span>
+      <span style="font-weight:800; font-size:13px;" id="trayPrice">₹0</span>
+    </div>
+    <span style="color:#FF6B00; font-weight:800; font-size:12px;">VIEW TRAY →</span>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><span style="font-size: 16px;">🍽️</span><span>Menu</span></div>
+    <div class="nav-item" onclick="alert('Food Tray: ' + cartCount + ' items')"><span style="font-size: 16px;">🛒</span><span>Cart</span></div>
+    <div class="nav-item" onclick="alert('Active Order: #THL-9482 (Preparing in Kitchen)')"><span style="font-size: 16px;">📍</span><span>Orders</span></div>
+    <div class="nav-item" onclick="toggleTheme()"><span style="font-size: 16px;">👤</span><span>Profile</span></div>
+  </div>
+</div>
+
+<script>
+const products = [
+  // DOSAS (6)
+  { id: 'p-1', name: 'Ghee Roast Masala Dosa', category: 'Dosas', price: 180, emoji: '🥞', desc: 'Crispy golden crepe roasted in pure desi ghee, stuffed with spiced potato masala.', rating: 4.9, best: true, veg: true },
+  { id: 'p-2', name: 'Mysore Cheese Burst Dosa', category: 'Dosas', price: 240, emoji: '🧀', desc: 'Spicy red garlic-chutney smeared crepe overflowing with molten mozzarella cheese.', rating: 4.8, best: true, veg: true },
+  { id: 'p-3', name: 'Rava Onion Masala Dosa', category: 'Dosas', price: 190, emoji: '🥞', desc: 'Semolina-rice batter laced with finely chopped shallots, cumin, and cashews.', rating: 4.7, best: false, veg: true },
+  { id: 'p-4', name: 'Podi Ghee Karam Dosa', category: 'Dosas', price: 210, emoji: '🌶️', desc: 'Crunchy crepe dusted with fiery Gunpowder Podi and sizzling hot cow ghee.', rating: 4.9, best: true, veg: true },
+  { id: 'p-5', name: 'Paper Plain Roast Dosa (2.5 Ft)', category: 'Dosas', price: 160, emoji: '📜', desc: 'Ultra-thin, mega crispy golden paper dosa served with trio of coastal chutneys.', rating: 4.6, best: false, veg: true },
+  { id: 'p-6', name: 'Chettinad Paneer Tikka Dosa', category: 'Dosas', price: 260, emoji: '🍛', desc: 'Fusion crepe layered with smoky roasted paneer tossed in Chettinad pepper masala.', rating: 4.8, best: false, veg: true },
+
+  // IDLIS & VADAS (5)
+  { id: 'p-7', name: 'Steamed Button Ghee Idli (14 Pcs)', category: 'Idlis & Vadas', price: 140, emoji: '⚪', desc: 'Bite-sized rice dumplings floating in steaming hot Drumstick Sambar and ghee.', rating: 4.9, best: true, veg: true },
+  { id: 'p-8', name: 'Medu Vada Duo with Sambar Dip', category: 'Idlis & Vadas', price: 120, emoji: '🍩', desc: 'Golden fried crispy black gram lentil doughnuts with crushed peppercorns and ginger.', rating: 4.8, best: true, veg: true },
+  { id: 'p-9', name: 'Kanchipuram Spiced Temple Idli', category: 'Idlis & Vadas', price: 150, emoji: '🛕', desc: 'Traditional fermented idli tempered with dried ginger, peppercorns, and curry leaves.', rating: 4.7, best: false, veg: true },
+  { id: 'p-10', name: 'Dahi Vada South Coastal Style', category: 'Idlis & Vadas', price: 160, emoji: '🥣', desc: 'Soft lentil vadas immersed in whipped sweet yogurt, sprinkled with roasted cumin.', rating: 4.6, best: false, veg: true },
+  { id: 'p-11', name: 'Thatte Idli with Podi & Butter', category: 'Idlis & Vadas', price: 170, emoji: '🧈', desc: 'Large Bangalore-style plate idli topped with fresh butter slab and spicy gunpowder.', rating: 4.9, best: true, veg: true },
+
+  // BIRYANI & RICE (5)
+  { id: 'p-12', name: 'Ambur Veg Dum Biryani', category: 'Biryani & Rice', price: 250, emoji: '🍚', desc: 'Fragrant Jeeraga Samba rice slow-cooked with garden vegetables, mint, and curd gravy.', rating: 4.8, best: true, veg: true },
+  { id: 'p-13', name: 'Bisi Bele Bath with Boondi', category: 'Biryani & Rice', price: 190, emoji: '🍲', desc: 'Karnataka hot lentil rice concoction cooked with tamarind, nutmeg, and ghee.', rating: 4.9, best: true, veg: true },
+  { id: 'p-14', name: 'Tempered Curd Rice (Thayir Sadam)', category: 'Biryani & Rice', price: 150, emoji: '🥣', desc: 'Comforting creamy yogurt rice tempered with mustard seeds and pomegranate.', rating: 4.7, best: false, veg: true },
+  { id: 'p-15', name: 'Tangy Lemon Peanut Rice', category: 'Biryani & Rice', price: 160, emoji: '🍋', desc: 'Zesty rice tossed with fresh lemon juice, turmeric, crunchy peanuts, and curry leaves.', rating: 4.5, best: false, veg: true },
+  { id: 'p-16', name: 'Chettinad Mushroom Biryani Pot', category: 'Biryani & Rice', price: 280, emoji: '🍄', desc: 'Spicy black pepper marinated mushrooms layered with aromatic basmati rice.', rating: 4.8, best: false, veg: true },
+
+  // CURRIES (5)
+  { id: 'p-17', name: 'Chettinad Paneer Kurma', category: 'Curries', price: 240, emoji: '🥘', desc: 'Rich roasted coconut, poppy seeds, and stone flower spiced gravy with paneer.', rating: 4.8, best: true, veg: true },
+  { id: 'p-18', name: 'Malabar Vegetable Stew', category: 'Curries', price: 220, emoji: '🥥', desc: 'Mild creamy coconut milk simmered with tender carrots, green peas, and potatoes.', rating: 4.7, best: false, veg: true },
+  { id: 'p-19', name: 'Madras Drumstick Sambar Pot', category: 'Curries', price: 130, emoji: '🍲', desc: 'Thick authentic tamarind lentil stew brewed with baby shallots and freshly ground masala.', rating: 4.9, best: true, veg: true },
+  { id: 'p-20', name: 'Ennai Kathirikai Kulambu', category: 'Curries', price: 210, emoji: '🍆', desc: 'Baby brinjals cooked in a tangy roasted sesame, tamarind, and spicy red chili gravy.', rating: 4.6, best: false, veg: true },
+  { id: 'p-21', name: 'Appam Basket (4 Pcs) with Stew', category: 'Curries', price: 230, emoji: '🥞', desc: 'Soft-centered lacy fermented rice pancakes paired with delicate coconut milk gravy.', rating: 4.9, best: true, veg: true },
+
+  // DESSERTS (5)
+  { id: 'p-22', name: 'Mysore Pak Melt (Desi Ghee)', category: 'Desserts', price: 130, emoji: '🧈', desc: 'Decadent royal sweet made from pure ghee, gram flour, and caramelized sugar.', rating: 4.9, best: true, veg: true },
+  { id: 'p-23', name: 'Elaneer Payasam (Tender Coconut)', category: 'Desserts', price: 160, emoji: '🥥', desc: 'Refreshing dessert prepared with pulp of tender green coconuts, sweetened milk, and cardamom.', rating: 4.9, best: true, veg: true },
+  { id: 'p-24', name: 'Rava Kesari with Cashews', category: 'Desserts', price: 120, emoji: '🍮', desc: 'Saffron-tinted semolina pudding cooked with generous cow ghee and golden raisins.', rating: 4.7, best: false, veg: true },
+  { id: 'p-25', name: 'Palada Pradhaman', category: 'Desserts', price: 150, emoji: '🍨', desc: 'Kerala festival delicacy of steamed rice flakes cooked in condensed milk and jaggery.', rating: 4.8, best: false, veg: true },
+  { id: 'p-26', name: 'Adhirasam Heritage Sweet (4 Pcs)', category: 'Desserts', price: 140, emoji: '🍩', desc: 'Pastry crafted from fermented rice dough and palm jaggery, fried in pure ghee.', rating: 4.5, best: false, veg: true },
+
+  // BEVERAGES (4)
+  { id: 'p-27', name: 'Thalaivaa Degree Filter Kaapi', category: 'Beverages', price: 70, emoji: '☕', desc: 'Traditional brass tumbler decoction brewed from chicory-infused Coorg coffee beans.', rating: 4.9, best: true, veg: true },
+  { id: 'p-28', name: 'Jigarthanda Madurai Special', category: 'Beverages', price: 140, emoji: '🥤', desc: 'Cooling dessert drink made with almond gum, nannari syrup, basundi, and ice cream.', rating: 4.9, best: true, veg: true },
+  { id: 'p-29', name: 'Spiced Neer Mor (Buttermilk)', category: 'Beverages', price: 60, emoji: '🥛', desc: 'Refreshing churned yogurt cooler tempered with crushed ginger, asafoetida, and chili.', rating: 4.8, best: false, veg: true },
+  { id: 'p-30', name: 'Fresh Nannari Sarbath with Chia', category: 'Beverages', price: 80, emoji: '🍹', desc: 'Heritage sarsaparilla root cooler infused with fresh lime juice, soaked chia, and ice.', rating: 4.7, best: false, veg: true }
+];
+
+const categories = ['All', 'Dosas', 'Idlis & Vadas', 'Biryani & Rice', 'Curries', 'Desserts', 'Beverages'];
+let selectedCat = 'All';
+let vegOnly = false;
+let bestOnly = false;
+let cart = {};
+let cartCount = 0;
+let cartTotal = 0;
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+}
+
+function renderCategories() {
+  const bar = document.getElementById('categoriesBar');
+  bar.innerHTML = categories.map(cat => {
+    const count = cat === 'All' ? products.length : products.filter(p => p.category === cat).length;
+    const isAct = selectedCat === cat ? 'active' : '';
+    return `<div class="cat-pill ${isAct}" onclick="selectCategory('${cat}')">
+      <span>${cat}</span>
+      <span class="cat-count">${count}</span>
+    </div>`;
+  }).join('');
+}
+
+function selectCategory(cat) {
+  selectedCat = cat;
+  renderCategories();
+  applyFilters();
+}
+
+function toggleVeg() {
+  vegOnly = !vegOnly;
+  document.getElementById('vegPill').classList.toggle('active-veg', vegOnly);
+  applyFilters();
+}
+
+function toggleBestseller() {
+  bestOnly = !bestOnly;
+  document.getElementById('bestPill').classList.toggle('active-best', bestOnly);
+  applyFilters();
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateCart();
+  applyFilters();
+}
+
+function updateQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  updateCart();
+  applyFilters();
+}
+
+function updateCart() {
+  cartCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  cartTotal = Object.entries(cart).reduce((sum, [id, qty]) => {
+    const p = products.find(x => x.id === id);
+    return sum + (p ? p.price * qty : 0);
+  }, 0);
+
+  const tray = document.getElementById('floatingTray');
+  if (cartCount > 0) {
+    tray.style.display = 'flex';
+    document.getElementById('trayCount').innerText = cartCount + ' ITEMS';
+    document.getElementById('trayPrice').innerText = '₹' + cartTotal;
+  } else {
+    tray.style.display = 'none';
+  }
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const list = document.getElementById('dishList');
+
+  const filtered = products.filter(p => {
+    const matchCat = (selectedCat === 'All') || (p.category === selectedCat);
+    const matchQ = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+    const matchVeg = !vegOnly || p.veg;
+    const matchBest = !bestOnly || p.best;
+    return matchCat && matchQ && matchVeg && matchBest;
+  });
+
+  const banner = `
+    <div class="hero-banner">
+      <div>
+        <span class="hero-tag">AUTHENTIC CHETTINAD</span>
+        <div class="hero-title">Weekend Food Festival</div>
+        <div class="hero-sub">Flat ₹50 OFF with code THALAIVAA50</div>
+      </div>
+      <div style="font-size: 36px;">🥘</div>
+    </div>`;
+
+  if (filtered.length === 0) {
+    list.innerHTML = banner + `
+      <div style="text-align:center; padding:40px 16px;">
+        <div style="font-size:40px;">🔍</div>
+        <div style="font-weight:800; font-size:15px; margin-top:10px;">No dishes found</div>
+        <div style="font-size:11px; color:#64748B; margin-top:4px;">Try clearing search or filters</div>
+        <button onclick="selectedCat='All'; vegOnly=false; bestOnly=false; document.getElementById('searchInput').value=''; renderCategories(); applyFilters();" style="margin-top:14px; background:#FF6B00; color:white; border:none; padding:8px 16px; border-radius:8px; font-weight:700; cursor:pointer;">Reset Filters</button>
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = banner + filtered.map(p => {
+    const qty = cart[p.id] || 0;
+    const actionBtn = qty > 0 ? `
+      <div class="qty-stepper">
+        <button class="qty-btn" onclick="updateQty('${p.id}', -1)">-</button>
+        <span style="padding:0 4px;">${qty}</span>
+        <button class="qty-btn" onclick="updateQty('${p.id}', 1)">+</button>
+      </div>` : `<button class="add-btn" onclick="addToCart('${p.id}')">ADD +</button>`;
+
+    return `
+      <div class="dish-card">
+        <div class="dish-info">
+          <div class="dish-header">
+            <div class="veg-box"><div class="veg-dot"></div></div>
+            <span class="rating-text">★ ${p.rating}</span>
+            ${p.best ? '<span class="bestseller-badge">MUST TRY</span>' : ''}
+          </div>
+          <div class="dish-name">${p.name}</div>
+          <div class="dish-desc">${p.desc}</div>
+          <div class="dish-price">₹${p.price}</div>
+        </div>
+        <div class="dish-media">
+          <div class="dish-icon">${p.emoji}</div>
+          ${actionBtn}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// Initial render
+renderCategories();
+applyFilters();
+</script>
+</body>
+</html>

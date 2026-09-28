@@ -1,0 +1,100 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: 👑
+      - generic [ref=e5]:
+        - generic [ref=e6]: Thalaivaa Mobile Simulator
+        - generic [ref=e7]: South Indian SaaS • Interactive Mobile Engine
+    - generic [ref=e8]:
+      - link "⚡ Real Flutter App ↗" [ref=e9] [cursor=pointer]:
+        - /url: /flutter_web/index.html
+      - link "🖥️ Multi-Surface Studio" [ref=e10] [cursor=pointer]:
+        - /url: /preview
+      - button "📱 Portrait" [ref=e11] [cursor=pointer]
+      - button "🌓 Dark/Light" [ref=e12] [cursor=pointer]
+      - button "🌐 English" [ref=e13] [cursor=pointer]:
+        - text: 🌐
+        - generic [ref=e14]: English
+      - combobox [ref=e15] [cursor=pointer]:
+        - option "iPhone 16 Pro (Titanium)" [selected]
+        - option "Google Pixel 9"
+        - option "Samsung Galaxy S24"
+      - link "👑 Admin Panel ↗" [ref=e16] [cursor=pointer]:
+        - /url: /admin
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic "Action Button" [ref=e19] [cursor=pointer]
+      - generic "Volume Up" [ref=e20] [cursor=pointer]
+      - generic "Volume Down" [ref=e21] [cursor=pointer]
+      - generic "Power / Lock Screen" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 🍛
+          - generic [ref=e28]: Thalaivaa 5G
+        - generic [ref=e30]:
+          - generic [ref=e31]: 15:07
+          - generic [ref=e32]:
+            - generic [ref=e33]: 5G
+            - generic [ref=e34]: 📶
+            - generic [ref=e35]: 🔋 98%
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Account
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 👤 Customer Profile
+              - text: ▾
+          - generic [ref=e42]:
+            - button "🌓" [ref=e43] [cursor=pointer]
+            - button "🌐" [ref=e44] [cursor=pointer]
+            - button "👤" [ref=e45] [cursor=pointer]
+        - generic [ref=e465]:
+          - generic [ref=e466]:
+            - generic [ref=e467]: 👑
+            - generic [ref=e468]: Thalaivaa Gold Member
+            - generic [ref=e469]: +91 92170 02598 • customer@thalaivaa.com
+            - generic [ref=e470]: 🪙 450 Thalaivaa Reward Coins
+          - generic [ref=e471]:
+            - generic [ref=e472]: ⚙️ Quick Preferences
+            - generic [ref=e474] [cursor=pointer]:
+              - generic [ref=e475]: 🌐 App Language
+              - generic [ref=e476]: English
+            - generic [ref=e477] [cursor=pointer]:
+              - generic [ref=e478]: 🌓 Dark Mode Theme
+              - generic [ref=e479]: Auto
+            - generic [ref=e480] [cursor=pointer]:
+              - generic [ref=e481]: 📍 Preferred Outlet
+              - generic [ref=e482]: City Light
+          - generic [ref=e483]:
+            - generic [ref=e484]: 📍 Saved Delivery Addresses
+            - generic [ref=e486]:
+              - generic [ref=e487]:
+                - generic [ref=e488]: 🏠 Home
+                - generic [ref=e489]: Flat 402, Royal Residency, City Light, Surat
+              - generic [ref=e490] [cursor=pointer]: Default
+            - generic [ref=e491]:
+              - generic [ref=e492]:
+                - generic [ref=e493]: 🏢 Office
+                - generic [ref=e494]: Tech Hub 5th Floor, VIP Road, Vesu, Surat
+              - generic [ref=e495] [cursor=pointer]: Select
+          - generic [ref=e496]:
+            - generic [ref=e497]: 💬 Support & Help Center
+            - generic [ref=e499] [cursor=pointer]:
+              - generic [ref=e500]: 📞 24x7 Customer Support
+              - generic [ref=e501]: Call ➔
+            - generic [ref=e502] [cursor=pointer]:
+              - generic [ref=e503]: 📄 Privacy Policy & Terms
+              - generic [ref=e504]: View ➔
+        - navigation [ref=e196]:
+          - generic [ref=e197] [cursor=pointer]:
+            - generic [ref=e198]: 🍽️
+            - generic [ref=e199]: Menu
+          - generic [ref=e200] [cursor=pointer]:
+            - generic [ref=e201]: 🛒
+            - generic [ref=e202]: Cart
+          - generic [ref=e203] [cursor=pointer]:
+            - generic [ref=e204]: 📍
+            - generic [ref=e205]: Track
+          - generic [ref=e206] [cursor=pointer]:
+            - generic [ref=e207]: 👤
+            - generic [ref=e208]: Profile
+        - generic [ref=e209] [cursor=pointer]

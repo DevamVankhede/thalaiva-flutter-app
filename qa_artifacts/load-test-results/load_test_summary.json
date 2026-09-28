@@ -1,0 +1,62 @@
+[
+  {
+    "concurrency": 4,
+    "totalRequests": 20,
+    "successfulRequests": 20,
+    "failedRequests": 0,
+    "durationSeconds": 1.075,
+    "throughputReqSec": 18.61,
+    "errorRatePct": 0.0,
+    "avgLatencyMs": 192.88,
+    "p50_ms": 182.24,
+    "p90_ms": 272.24,
+    "p95_ms": 293.56,
+    "p99_ms": 293.56,
+    "tierName": "Baseline Load"
+  },
+  {
+    "concurrency": 8,
+    "totalRequests": 40,
+    "successfulRequests": 40,
+    "failedRequests": 0,
+    "durationSeconds": 1.756,
+    "throughputReqSec": 22.78,
+    "errorRatePct": 0.0,
+    "avgLatencyMs": 316.11,
+    "p50_ms": 310.6,
+    "p90_ms": 437.24,
+    "p95_ms": 467.17,
+    "p99_ms": 475.34,
+    "tierName": "Normal Expected Load"
+  },
+  {
+    "concurrency": 16,
+    "totalRequests": 64,
+    "successfulRequests": 64,
+    "failedRequests": 0,
+    "durationSeconds": 2.632,
+    "throughputReqSec": 24.32,
+    "errorRatePct": 0.0,
+    "avgLatencyMs": 575.09,
+    "p50_ms": 618.83,
+    "p90_ms": 742.04,
+    "p95_ms": 765.32,
+    "p99_ms": 774.15,
+    "tierName": "Peak Traffic Load"
+  },
+  {
+    "concurrency": 24,
+    "totalRequests": 96,
+    "successfulRequests": 96,
+    "failedRequests": 0,
+    "durationSeconds": 4.152,
+    "throughputReqSec": 23.12,
+    "errorRatePct": 0.0,
+    "avgLatencyMs": 886.76,
+    "p50_ms": 979.6,
+    "p90_ms": 1065.03,
+    "p95_ms": 1137.15,
+    "p99_ms": 1167.48,
+    "tierName": "Stress / Saturation Load"
+  }
+]

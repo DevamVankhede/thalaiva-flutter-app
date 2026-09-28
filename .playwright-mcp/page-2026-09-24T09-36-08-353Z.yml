@@ -1,0 +1,119 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: 👑
+      - generic [ref=e5]:
+        - generic [ref=e6]: Thalaivaa Mobile Simulator
+        - generic [ref=e7]: South Indian SaaS • Interactive Mobile Engine
+    - generic [ref=e8]:
+      - link "⚡ Real Flutter App ↗" [ref=e9] [cursor=pointer]:
+        - /url: /flutter_web/index.html
+      - link "🖥️ Multi-Surface Studio" [ref=e10] [cursor=pointer]:
+        - /url: /preview
+      - button "📱 Portrait" [ref=e11] [cursor=pointer]
+      - button "🌓 Dark/Light" [ref=e12] [cursor=pointer]
+      - button "🌐 English" [ref=e13] [cursor=pointer]:
+        - text: 🌐
+        - generic [ref=e14]: English
+      - combobox [ref=e15] [cursor=pointer]:
+        - option "iPhone 16 Pro (Titanium)" [selected]
+        - option "Google Pixel 9"
+        - option "Samsung Galaxy S24"
+      - link "👑 Admin Panel ↗" [ref=e16] [cursor=pointer]:
+        - /url: /admin
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic "Action Button" [ref=e19] [cursor=pointer]
+      - generic "Volume Up" [ref=e20] [cursor=pointer]
+      - generic "Volume Down" [ref=e21] [cursor=pointer]
+      - generic "Power / Lock Screen" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 🍛
+          - generic [ref=e28]: Thalaivaa 5G
+        - generic [ref=e30]:
+          - generic [ref=e31]: 15:06
+          - generic [ref=e32]:
+            - generic [ref=e33]: 5G
+            - generic [ref=e34]: 📶
+            - generic [ref=e35]: 🔋 98%
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Checkout
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 🛒 My Order Summary
+              - text: ▾
+          - generic [ref=e42]:
+            - button "🌓" [ref=e43] [cursor=pointer]
+            - button "🌐" [ref=e44] [cursor=pointer]
+            - button "👤" [ref=e45] [cursor=pointer]
+        - generic [ref=e360]:
+          - generic [ref=e361]:
+            - generic [ref=e362]: 🍽️ Order Mode
+            - generic [ref=e364]:
+              - generic [ref=e365] [cursor=pointer]: 🛵 Delivery
+              - generic [ref=e366] [cursor=pointer]: 🛍️ Takeaway
+              - generic [ref=e367] [cursor=pointer]: 🪑 Dine-in Table
+            - generic [ref=e368]: "Selected Outlet: City Light Hub (Main)"
+          - generic [ref=e369]:
+            - generic [ref=e370]:
+              - generic [ref=e371]: 🛒 Items in Order
+              - generic [ref=e372] [cursor=pointer]: Clear All
+            - generic [ref=e373]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - generic [ref=e376]: Thalaivaa Special Ghee Roast Dosa
+                  - generic [ref=e377]: ₹180 × 1
+                - generic [ref=e378]:
+                  - generic [ref=e379]:
+                    - button "-" [ref=e380] [cursor=pointer]
+                    - generic [ref=e381]: "1"
+                    - button "+" [ref=e382] [cursor=pointer]
+                  - generic [ref=e383]: ₹180
+              - generic [ref=e384]:
+                - generic [ref=e385]:
+                  - generic [ref=e386]: Authentic Degree Filter Kaapi
+                  - generic [ref=e387]: ₹70 × 2
+                - generic [ref=e388]:
+                  - generic [ref=e389]:
+                    - button "-" [ref=e390] [cursor=pointer]
+                    - generic [ref=e391]: "2"
+                    - button "+" [ref=e392] [cursor=pointer]
+                  - generic [ref=e393]: ₹140
+          - generic [ref=e394]:
+            - generic [ref=e395]: 🎟️ Coupon & Promo
+            - generic [ref=e397]:
+              - textbox "e.g. THALAIVAA50" [ref=e398]: THALAIVAA50
+              - button "Apply" [ref=e399] [cursor=pointer]
+          - generic [ref=e400]:
+            - generic [ref=e401]: 🧾 Bill Summary
+            - generic [ref=e403]:
+              - generic [ref=e404]: Item Subtotal
+              - generic [ref=e405]: ₹320.00
+            - generic [ref=e406]:
+              - generic [ref=e407]: GST (5%)
+              - generic [ref=e408]: ₹16.00
+            - generic [ref=e409]:
+              - generic [ref=e410]: Delivery Fee
+              - generic [ref=e411]: FREE
+            - generic [ref=e412]:
+              - generic [ref=e413]: Promo Discount
+              - generic [ref=e414]: "-₹50.00"
+            - generic [ref=e415]:
+              - generic [ref=e416]: Grand Total
+              - generic [ref=e417]: ₹286.00
+          - button "Place Order ➔" [ref=e418] [cursor=pointer]
+        - navigation [ref=e196]:
+          - generic [ref=e197] [cursor=pointer]:
+            - generic [ref=e198]: 🍽️
+            - generic [ref=e199]: Menu
+          - generic [ref=e200] [cursor=pointer]:
+            - generic [ref=e201]: 🛒
+            - generic [ref=e202]: Cart
+          - generic [ref=e203] [cursor=pointer]:
+            - generic [ref=e204]: 📍
+            - generic [ref=e205]: Track
+          - generic [ref=e206] [cursor=pointer]:
+            - generic [ref=e207]: 👤
+            - generic [ref=e208]: Profile
+        - generic [ref=e209] [cursor=pointer]
