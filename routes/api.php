@@ -25,7 +25,8 @@ Route::get('/health', function () {
 
 // API Version 1
 Route::prefix('v1')->middleware(['throttle:api'])->group(function () {
-    // Auth & OTP — Anti-Brute-Force Rate Limiting (5 attempts/min)
+    // Auth & OTP — Anti-Brute-Force Rate Limiting
+    Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1');
     Route::post('/auth/otp/send', [AuthController::class, 'sendOtp'])->middleware('throttle:5,1');
     Route::post('/auth/otp/verify', [AuthController::class, 'verifyOtp'])->middleware('throttle:5,1');
 
@@ -37,25 +38,32 @@ Route::prefix('v1')->middleware(['throttle:api'])->group(function () {
     // Coupons
     Route::post('/coupons/validate', [CouponController::class, 'validateCoupon'])->middleware('throttle:20,1');
 
-    // Orders — Bot Flood Mitigation
-    Route::get('/orders', [OrderController::class, 'index']);
+    // Orders Creation
     Route::post('/orders', [OrderController::class, 'store'])->middleware('throttle:15,1');
-    Route::get('/orders/{id}', [OrderController::class, 'show']);
 
     // Authenticated Routes
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/orders/{id}', [OrderController::class, 'show']);
     });
 });
 
 // Backward-compatible un-prefixed aliases for legacy clients
 Route::middleware(['throttle:api'])->group(function () {
+    Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']);
     Route::get('/branches', [CatalogController::class, 'branches']);
     Route::get('/categories', [CatalogController::class, 'categories']);
     Route::get('/products', [CatalogController::class, 'products']);
     Route::post('/coupons/validate', [CouponController::class, 'validateCoupon']);
-    Route::get('/orders', [OrderController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
-    Route::get('/orders/{id}', [OrderController::class, 'show']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/orders/{id}', [OrderController::class, 'show']);
+    });
 });

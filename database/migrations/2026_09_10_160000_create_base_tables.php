@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('phone', 20)->unique();
             $table->string('email', 150)->nullable()->unique();
             $table->string('name', 150)->nullable();
+            $table->string('password', 255)->nullable();
             $table->timestamp('otp_verified_at')->nullable();
             $table->text('fcm_token')->nullable();
             $table->string('locale', 10)->default('en');

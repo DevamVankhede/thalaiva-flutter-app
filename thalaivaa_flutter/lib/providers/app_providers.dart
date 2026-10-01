@@ -1,36 +1,55 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/models.dart';
+import '../services/api_service.dart';
 
-// 1. Branches Provider (Surat Locations)
-final branchesProvider = Provider<List<Branch>>((ref) {
-  return const [
-    Branch(
-      id: 'br-1',
-      name: 'Thalaivaa - City Light (Main)',
-      address: 'Shop 12-14, City Light Town, Surat, Gujarat 395007',
-      phone: '+91 92170 02598',
-      rating: 4.9,
-      deliveryTime: '20-25 min',
-    ),
-    Branch(
-      id: 'br-2',
-      name: 'Thalaivaa - Vesu Branch',
-      address: 'VIP Road, Vesu, Surat, Gujarat 395007',
-      phone: '+91 92170 02599',
-      rating: 4.8,
-      deliveryTime: '30-35 min',
-    ),
-    Branch(
-      id: 'br-3',
-      name: 'Thalaivaa - Adajan Hub',
-      address: 'L.P. Savani Road, Adajan, Surat, Gujarat 395009',
-      phone: '+91 92170 02600',
-      rating: 4.7,
-      deliveryTime: '25-30 min',
-    ),
-  ];
+// 1. Branches Provider (Surat Locations backed by Database)
+const defaultBranches = <Branch>[
+  Branch(
+    id: 'br-1',
+    name: 'Thalaivaa - City Light (Main)',
+    address: 'Shop 12-14, City Light Town, Surat, Gujarat 395007',
+    phone: '+91 92170 02598',
+    rating: 4.9,
+    deliveryTime: '20-25 min',
+  ),
+  Branch(
+    id: 'br-2',
+    name: 'Thalaivaa - Vesu Branch',
+    address: 'VIP Road, Vesu, Surat, Gujarat 395007',
+    phone: '+91 92170 02599',
+    rating: 4.8,
+    deliveryTime: '30-35 min',
+  ),
+  Branch(
+    id: 'br-3',
+    name: 'Thalaivaa - Adajan Hub',
+    address: 'L.P. Savani Road, Adajan, Surat, Gujarat 395009',
+    phone: '+91 92170 02600',
+    rating: 4.7,
+    deliveryTime: '25-30 min',
+  ),
+];
+
+class BranchesNotifier extends StateNotifier<List<Branch>> {
+  BranchesNotifier() : super(defaultBranches) {
+    loadBranches();
+  }
+
+  Future<void> loadBranches() async {
+    try {
+      final list = await ApiService.fetchBranches();
+      if (list.isNotEmpty) {
+        state = list;
+      }
+    } catch (_) {}
+  }
+}
+
+final branchesProvider = StateNotifierProvider<BranchesNotifier, List<Branch>>((ref) {
+  return BranchesNotifier();
 });
 
 final selectedBranchProvider = StateProvider<Branch>((ref) {
@@ -38,7 +57,7 @@ final selectedBranchProvider = StateProvider<Branch>((ref) {
   return branches.first;
 });
 
-// 2. 30 Varieties of Authentic South Indian Delicacies
+// 2. 30 Varieties of Authentic South Indian Delicacies (Database Catalog)
 final sampleProducts = <Product>[
   // --- DOSAS & CRISPY ROASTS (6) ---
   const Product(
@@ -583,19 +602,39 @@ bool matchCategory(String productCat, String selectedCat) {
   if ((s.contains('rice') || s.contains('meal') || s.contains('biryani') || s.contains('thali') || s.contains('bread')) && (p.contains('biryani') || p.contains('rice') || p.contains('meal') || p.contains('thali'))) return true;
   if ((s.contains('curri') || s.contains('gravi') || s.contains('kurma') || s.contains('sambar') || s.contains('stew')) && (p.contains('curri') || p.contains('gravi') || p.contains('kurma') || p.contains('sambar') || p.contains('stew'))) return true;
   if ((s.contains('sweet') || s.contains('dessert') || s.contains('payasam') || s.contains('kesari') || s.contains('pak')) && (p.contains('sweet') || p.contains('dessert') || p.contains('payasam') || p.contains('kesari') || p.contains('pak'))) return true;
-  if ((s.contains('beverage') || s.contains('kaapi') || s.contains('drink') || s.contains('cooler') || s.contains('coffee')) && (p.contains('beverage') || p.contains('kaapi') || p.contains('drink') || p.contains('cooler') || p.contains('coffee'))) return true;
   return false;
 }
 
+// Products Catalog Notifier (Loads from Database)
+class ProductsNotifier extends StateNotifier<List<Product>> {
+  ProductsNotifier() : super(sampleProducts) {
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    try {
+      final list = await ApiService.fetchProducts();
+      if (list.isNotEmpty) {
+        state = list;
+      }
+    } catch (_) {}
+  }
+}
+
+final productsProvider = StateNotifierProvider<ProductsNotifier, List<Product>>((ref) {
+  return ProductsNotifier();
+});
+
 // Comprehensive Filtered & Sorted Products Engine
 final filteredProductsProvider = Provider<List<Product>>((ref) {
+  final products = ref.watch(productsProvider);
   final category = ref.watch(selectedCategoryProvider);
   final query = ref.watch(searchQueryProvider).trim().toLowerCase();
   final dietary = ref.watch(dietaryFilterProvider);
   final bestsellerOnly = ref.watch(bestsellerOnlyProvider);
   final sort = ref.watch(sortByProvider);
 
-  var list = sampleProducts.where((p) {
+  var list = products.where((p) {
     final matchesCategory = matchCategory(p.category, category);
     final matchesQuery = query.isEmpty ||
         p.name.toLowerCase().contains(query) ||
@@ -769,46 +808,156 @@ final cartProvider = StateNotifierProvider<CartNotifier, CartState>((ref) {
   return CartNotifier();
 });
 
-// 4. Order Tracking State
-class OrdersNotifier extends StateNotifier<List<OrderModel>> {
-  OrdersNotifier()
-      : super([
-          OrderModel(
-            id: 'ord-101',
-            orderNumber: 'THL-9482',
-            items: [
-              CartItem(
-                id: 'ci-1',
-                product: sampleProducts[0],
-                quantity: 2,
-              ),
-              CartItem(
-                id: 'ci-2',
-                product: sampleProducts[26],
-                quantity: 2,
-              ),
-            ],
-            subtotal: 500.0,
-            tax: 25.0,
-            deliveryFee: 0.0,
-            discount: 50.0,
-            grandTotal: 475.0,
-            status: OrderStatus.preparing,
-            createdAt: DateTime.now().subtract(const Duration(minutes: 12)),
-            branch: const Branch(
-              id: 'br-1',
-              name: 'Thalaivaa - City Light (Main)',
-              address: 'Shop 12-14, City Light Town, Surat',
-              phone: '+91 92170 02598',
-            ),
-            deliveryAddress: 'Flat 402, Royal Palms, City Light, Surat',
-          ),
-        ]);
+// 4. Multi-User Authentication State
+class AuthNotifier extends StateNotifier<UserModel?> {
+  final Ref ref;
+  AuthNotifier(this.ref) : super(null);
 
-  void placeOrder(CartState cart, Branch branch) {
+  Future<Map<String, dynamic>> login(String identifier, String password) async {
+    final result = await ApiService.login(identifier: identifier, password: password);
+    if (result['success'] == true && result['user'] != null) {
+      final user = result['user'] as UserModel;
+      state = user;
+      if (user.token != null) {
+        await ref.read(ordersProvider.notifier).fetchOrders(user.token!);
+      }
+    }
+    return result;
+  }
+
+  Future<Map<String, dynamic>> verifyOtp(String phone, String otp) async {
+    final result = await ApiService.verifyOtp(phone: phone, otp: otp);
+    if (result['success'] == true && result['user'] != null) {
+      final user = result['user'] as UserModel;
+      state = user;
+      if (user.token != null) {
+        await ref.read(ordersProvider.notifier).fetchOrders(user.token!);
+      }
+    }
+    return result;
+  }
+
+  Future<void> logout() async {
+    final currentToken = state?.token;
+    if (currentToken != null) {
+      try {
+        await ApiService.logout(currentToken);
+      } catch (_) {}
+    }
+    state = null;
+    ref.read(ordersProvider.notifier).clearOrders();
+    ref.read(selectedOrderProvider.notifier).state = null;
+  }
+
+  void setUser(UserModel? user) {
+    state = user;
+    if (user?.token != null) {
+      ref.read(ordersProvider.notifier).fetchOrders(user!.token!);
+    } else {
+      ref.read(ordersProvider.notifier).clearOrders();
+    }
+  }
+}
+
+final authProvider = StateNotifierProvider<AuthNotifier, UserModel?>((ref) {
+  return AuthNotifier(ref);
+});
+
+// 5. User-Scoped Order History & Tracking State
+class OrdersNotifier extends StateNotifier<List<OrderModel>> {
+  final Ref ref;
+  final bool autoStartTimer;
+  Timer? _lifecycleTimer;
+
+  OrdersNotifier(this.ref, {this.autoStartTimer = false}) : super([]) {
+    if (autoStartTimer) {
+      _startLifecycleEngine();
+    }
+  }
+
+  void _startLifecycleEngine() {
+    _lifecycleTimer?.cancel();
+    _lifecycleTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
+      tickOrderProgression();
+    });
+  }
+
+  void tickOrderProgression() {
+    if (state.isEmpty) return;
+
+    bool hasChanged = false;
+    final now = DateTime.now();
+
+    final updated = state.map((order) {
+      if (order.status == OrderStatus.delivered) {
+        return order;
+      }
+
+      final diffSec = now.difference(order.createdAt).inSeconds;
+
+      // Realistic progressive lifecycle:
+      // 0 - 15s: Placed / Confirmed
+      // 15 - 45s: Kitchen Preparing
+      // 45 - 90s: Out for Delivery
+      // > 90s: Delivered
+      OrderStatus nextStatus = order.status;
+      if (diffSec >= 90) {
+        nextStatus = OrderStatus.delivered;
+      } else if (diffSec >= 45) {
+        nextStatus = OrderStatus.outForDelivery;
+      } else if (diffSec >= 15) {
+        nextStatus = OrderStatus.preparing;
+      }
+
+      if (nextStatus != order.status) {
+        hasChanged = true;
+        final updatedOrder = order.copyWith(status: nextStatus);
+        // Sync global selected order if active
+        final currentSelected = ref.read(selectedOrderProvider);
+        if (currentSelected != null && (currentSelected.id == order.id || currentSelected.orderNumber == order.orderNumber)) {
+          Future.microtask(() {
+            ref.read(selectedOrderProvider.notifier).state = updatedOrder;
+          });
+        }
+        return updatedOrder;
+      }
+      return order;
+    }).toList();
+
+    if (hasChanged) {
+      state = updated;
+    }
+  }
+
+  Future<void> fetchOrders(String token) async {
+    ref.read(ordersLoadingProvider.notifier).state = true;
+    ref.read(ordersErrorProvider.notifier).state = null;
+    try {
+      final list = await ApiService.fetchOrders(token);
+      state = list;
+      tickOrderProgression();
+    } catch (e) {
+      ref.read(ordersErrorProvider.notifier).state = e.toString();
+    } finally {
+      ref.read(ordersLoadingProvider.notifier).state = false;
+    }
+  }
+
+  void setOrders(List<OrderModel> orders) {
+    state = orders;
+  }
+
+  void clearOrders() {
+    _lifecycleTimer?.cancel();
+    _lifecycleTimer = null;
+    state = [];
+  }
+
+  Future<void> placeOrder(CartState cart, Branch branch, {String? userToken}) async {
+    final now = DateTime.now();
     final newOrder = OrderModel(
-      id: 'ord-${DateTime.now().millisecondsSinceEpoch}',
-      orderNumber: 'THL-${1000 + (DateTime.now().millisecond % 9000)}',
+      id: 'ord-${now.millisecondsSinceEpoch}',
+      orderNumber: 'THL-${1000 + (now.millisecond % 9000)}',
       items: List.from(cart.items),
       subtotal: cart.subtotal,
       tax: cart.tax,
@@ -816,17 +965,49 @@ class OrdersNotifier extends StateNotifier<List<OrderModel>> {
       discount: cart.discountAmount,
       grandTotal: cart.grandTotal,
       status: OrderStatus.confirmed,
-      createdAt: DateTime.now(),
+      createdAt: now,
       branch: branch,
       deliveryAddress: cart.deliveryAddress,
     );
     state = [newOrder, ...state];
+    ref.read(selectedOrderProvider.notifier).state = newOrder;
+    if (autoStartTimer) {
+      _startLifecycleEngine();
+    }
+
+    // Persist to backend database API
+    try {
+      final payload = {
+        'branch_id': branch.id.length == 36 ? branch.id : null,
+        'items': cart.items.map((i) => {
+          'product_id': i.product.id,
+          'quantity': i.quantity,
+          'modifiers': i.selectedModifiers.map((m) => {'id': m.id}).toList(),
+        }).toList(),
+        'delivery_address_line': cart.deliveryAddress,
+        'coupon_code': cart.appliedCoupon,
+      };
+      if (payload['branch_id'] != null) {
+        await ApiService.createOrder(payload: payload, token: userToken);
+      }
+    } catch (_) {}
+  }
+
+  @override
+  void dispose() {
+    _lifecycleTimer?.cancel();
+    _lifecycleTimer = null;
+    super.dispose();
   }
 }
 
 final ordersProvider = StateNotifierProvider<OrdersNotifier, List<OrderModel>>((ref) {
-  return OrdersNotifier();
+  return OrdersNotifier(ref, autoStartTimer: true);
 });
 
-// 5. Navigation Provider (0: Menu, 1: Cart, 2: Orders, 3: Profile)
+final ordersLoadingProvider = StateProvider<bool>((ref) => false);
+final ordersErrorProvider = StateProvider<String?>((ref) => null);
+final selectedOrderProvider = StateProvider<OrderModel?>((ref) => null);
+
+// 6. Navigation Provider (0: Menu, 1: Cart, 2: Orders, 3: Profile)
 final bottomNavIndexProvider = StateProvider<int>((ref) => 0);

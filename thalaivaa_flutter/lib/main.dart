@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme.dart';
@@ -21,6 +22,15 @@ class ThalaivaaApp extends ConsumerWidget {
     return MaterialApp(
       title: 'Thalaivaa - Authentic South Indian Cuisine',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown,
+        },
+      ),
       theme: ThalaivaaTheme.lightTheme,
       darkTheme: ThalaivaaTheme.darkTheme,
       themeMode: themeMode,

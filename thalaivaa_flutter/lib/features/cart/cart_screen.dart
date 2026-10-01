@@ -436,7 +436,8 @@ class _CartScreenState extends ConsumerState<CartScreen> {
               // 6. Checkout CTA
               ElevatedButton(
                 onPressed: () {
-                  ref.read(ordersProvider.notifier).placeOrder(cart, selectedBranch);
+                  final user = ref.read(authProvider);
+                  ref.read(ordersProvider.notifier).placeOrder(cart, selectedBranch, userToken: user?.token);
                   ref.read(cartProvider.notifier).clearCart();
                   ref.read(bottomNavIndexProvider.notifier).state = 2; // Switch to Orders tab
                   ScaffoldMessenger.of(context).showSnackBar(

@@ -71,13 +71,17 @@ class OrderController extends Controller
     public function index(Request $request): JsonResponse
     {
         $user = $request->user() ?: auth('sanctum')->user();
-        $query = Order::with(['items', 'branch'])->latest();
 
-        if ($user) {
-            $query->where('user_id', $user->id);
-        } elseif ($request->filled('phone')) {
-            $query->where('delivery_phone', $request->input('phone'));
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthenticated. Please log in to view orders.',
+            ], 401);
         }
+
+        $query = Order::with(['items', 'branch'])
+            ->where('user_id', $user->id)
+            ->latest();
 
         $orders = $query->paginate(20);
 
@@ -91,6 +95,16 @@ class OrderController extends Controller
                 'branch_name' => $o->branch?->name,
                 'total_amount_inr' => round($o->total_amount / 100, 2),
                 'items_count' => $o->items->count(),
+                'items' => $o->items->map(fn($item) => [
+                    'id' => $item->id,
+                    'product_name' => $item->product_name_snapshot,
+                    'variant_name' => $item->variant_name_snapshot,
+                    'quantity' => $item->quantity,
+                    'unit_price_inr' => round($item->unit_price / 100, 2),
+                    'total_price_inr' => round($item->line_total / 100, 2),
+                ]),
+                'delivery_name' => $o->delivery_name,
+                'delivery_address' => $o->delivery_address_line . ', ' . $o->delivery_city,
                 'created_at' => $o->created_at->toIso8601String(),
             ]),
             'meta' => [
@@ -106,6 +120,13 @@ class OrderController extends Controller
     public function show(Request $request, string $id): JsonResponse
     {
         $user = $request->user() ?: auth('sanctum')->user();
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthenticated. Please log in to view order details.',
+            ], 401);
+        }
 
         $query = Order::with(['items.product', 'branch', 'statusLogs', 'payments']);
 
@@ -125,7 +146,7 @@ class OrderController extends Controller
         }
 
         // Ownership verification (IDOR protection)
-        if ($user && $order->user_id !== $user->id) {
+        if ($order->user_id !== $user->id) {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access to this order.',

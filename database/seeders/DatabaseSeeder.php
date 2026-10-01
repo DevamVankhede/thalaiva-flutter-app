@@ -13,11 +13,16 @@ use App\Models\ModifierOption;
 use App\Models\Coupon;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\OrderStatusLog;
+use App\Models\Payment;
 use App\Models\RbacRole;
 use App\Models\RbacPermission;
 use App\Models\RbacRolePermission;
 use App\Models\AdminRbacAssignment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -70,7 +75,9 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Thalaivaa Customer',
                 'email' => 'customer@thalaivaa.com',
+                'password' => bcrypt('Password123!'),
                 'is_active' => true,
+                'otp_verified_at' => now(),
             ]
         );
 
@@ -326,6 +333,212 @@ class DatabaseSeeder extends Seeder
                     ]
                 );
             }
+        }
+
+        // 6. Test Users for Multi-User Authentication & Order History
+        // User A: Multiple Orders
+        $userA = User::firstOrCreate(
+            ['email' => 'usera@test.com'],
+            [
+                'phone' => '+919800000001',
+                'name' => 'Aarav Sharma',
+                'password' => bcrypt('Password123!'),
+                'is_active' => true,
+                'otp_verified_at' => now(),
+            ]
+        );
+
+        // User B: Single Order
+        $userB = User::firstOrCreate(
+            ['email' => 'userb@test.com'],
+            [
+                'phone' => '+919800000002',
+                'name' => 'Bhavna Patel',
+                'password' => bcrypt('Password123!'),
+                'is_active' => true,
+                'otp_verified_at' => now(),
+            ]
+        );
+
+        // User C: Zero Orders
+        $userC = User::firstOrCreate(
+            ['email' => 'userc@test.com'],
+            [
+                'phone' => '+919800000003',
+                'name' => 'Chirag Mehta',
+                'password' => bcrypt('Password123!'),
+                'is_active' => true,
+                'otp_verified_at' => now(),
+            ]
+        );
+
+        $dosaProduct = Product::where('slug', 'ghee-roast-masala-dosa-' . $cityLightBranch->slug)->first() ?? Product::first();
+        $mysoreDosa = Product::where('slug', 'mysore-cheese-burst-dosa-' . $cityLightBranch->slug)->first() ?? Product::first();
+        $kaapiProduct = Product::where('slug', 'authentic-filter-kaapi-' . $cityLightBranch->slug)->first() ?? Product::first();
+        $biryaniProduct = Product::where('slug', 'chettinad-veggie-dum-biryani-' . $vesuBranch->slug)->first() ?? Product::first();
+
+        // Seed Orders for User A (3 Orders)
+        if (Order::where('user_id', $userA->id)->count() === 0) {
+            // User A Order 1: ORD-001 (Delivered)
+            $orderA1 = Order::create([
+                'user_id' => $userA->id,
+                'branch_id' => $cityLightBranch->id,
+                'order_number' => 'ORD-001',
+                'status' => 'delivered',
+                'payment_status' => 'paid',
+                'subtotal' => 36000,
+                'tax_amount' => 1800,
+                'discount_amount' => 5000,
+                'delivery_charge' => 4000,
+                'total_amount' => 36800,
+                'discount_type' => 'fixed',
+                'discount_value' => 50.00,
+                'delivery_name' => $userA->name,
+                'delivery_phone' => $userA->phone,
+                'delivery_address_line' => 'Flat 402, Royal Palms, City Light',
+                'delivery_city' => 'Surat',
+                'delivery_postal' => '395007',
+                'status_changed_at' => now()->subHours(2),
+                'created_at' => now()->subDays(2),
+            ]);
+
+            OrderItem::create([
+                'order_id' => $orderA1->id,
+                'product_id' => $dosaProduct->id,
+                'variant_id' => $dosaProduct->variants->first()?->id,
+                'quantity' => 2,
+                'unit_price' => 18000,
+                'line_total' => 36000,
+                'product_name_snapshot' => $dosaProduct->name,
+                'variant_name_snapshot' => 'Regular',
+            ]);
+
+            OrderStatusLog::create([
+                'order_id' => $orderA1->id,
+                'from_status' => 'out_for_delivery',
+                'to_status' => 'delivered',
+                'actor_type' => 'driver',
+                'notes' => 'Handed over at doorstep',
+                'created_at' => now()->subHours(2),
+            ]);
+
+            // User A Order 2: ORD-002 (Preparing)
+            $orderA2 = Order::create([
+                'user_id' => $userA->id,
+                'branch_id' => $cityLightBranch->id,
+                'order_number' => 'ORD-002',
+                'status' => 'preparing',
+                'payment_status' => 'paid',
+                'subtotal' => 24000,
+                'tax_amount' => 1200,
+                'discount_amount' => 0,
+                'delivery_charge' => 4000,
+                'total_amount' => 29200,
+                'delivery_name' => $userA->name,
+                'delivery_phone' => $userA->phone,
+                'delivery_address_line' => 'Flat 402, Royal Palms, City Light',
+                'delivery_city' => 'Surat',
+                'delivery_postal' => '395007',
+                'status_changed_at' => now()->subMinutes(15),
+                'created_at' => now()->subMinutes(20),
+            ]);
+
+            OrderItem::create([
+                'order_id' => $orderA2->id,
+                'product_id' => $mysoreDosa->id,
+                'variant_id' => $mysoreDosa->variants->first()?->id,
+                'quantity' => 1,
+                'unit_price' => 24000,
+                'line_total' => 24000,
+                'product_name_snapshot' => $mysoreDosa->name,
+                'variant_name_snapshot' => 'Regular',
+            ]);
+
+            OrderStatusLog::create([
+                'order_id' => $orderA2->id,
+                'from_status' => 'confirmed',
+                'to_status' => 'preparing',
+                'actor_type' => 'kds',
+                'notes' => 'Chef roasting dosa',
+                'created_at' => now()->subMinutes(15),
+            ]);
+
+            // User A Order 3: ORD-003 (Confirmed)
+            $orderA3 = Order::create([
+                'user_id' => $userA->id,
+                'branch_id' => $cityLightBranch->id,
+                'order_number' => 'ORD-003',
+                'status' => 'confirmed',
+                'payment_status' => 'paid',
+                'subtotal' => 14000,
+                'tax_amount' => 700,
+                'discount_amount' => 0,
+                'delivery_charge' => 4000,
+                'total_amount' => 18700,
+                'delivery_name' => $userA->name,
+                'delivery_phone' => $userA->phone,
+                'delivery_address_line' => 'Flat 402, Royal Palms, City Light',
+                'delivery_city' => 'Surat',
+                'delivery_postal' => '395007',
+                'status_changed_at' => now()->subMinutes(5),
+                'created_at' => now()->subMinutes(5),
+            ]);
+
+            OrderItem::create([
+                'order_id' => $orderA3->id,
+                'product_id' => $kaapiProduct->id,
+                'variant_id' => $kaapiProduct->variants->first()?->id,
+                'quantity' => 2,
+                'unit_price' => 7000,
+                'line_total' => 14000,
+                'product_name_snapshot' => $kaapiProduct->name,
+                'variant_name_snapshot' => 'Regular',
+            ]);
+        }
+
+        // Seed Orders for User B (1 Order: ORD-004)
+        if (Order::where('user_id', $userB->id)->count() === 0) {
+            $orderB1 = Order::create([
+                'user_id' => $userB->id,
+                'branch_id' => $vesuBranch->id,
+                'order_number' => 'ORD-004',
+                'status' => 'out_for_delivery',
+                'payment_status' => 'paid',
+                'subtotal' => 48000,
+                'tax_amount' => 2400,
+                'discount_amount' => 10000,
+                'delivery_charge' => 0,
+                'total_amount' => 40400,
+                'discount_type' => 'fixed',
+                'discount_value' => 100.00,
+                'delivery_name' => $userB->name,
+                'delivery_phone' => $userB->phone,
+                'delivery_address_line' => '102 Green Acres, VIP Road, Vesu',
+                'delivery_city' => 'Surat',
+                'delivery_postal' => '395007',
+                'status_changed_at' => now()->subMinutes(10),
+                'created_at' => now()->subMinutes(40),
+            ]);
+
+            OrderItem::create([
+                'order_id' => $orderB1->id,
+                'product_id' => $biryaniProduct->id,
+                'variant_id' => $biryaniProduct->variants->first()?->id,
+                'quantity' => 2,
+                'unit_price' => 24000,
+                'line_total' => 48000,
+                'product_name_snapshot' => $biryaniProduct->name,
+                'variant_name_snapshot' => 'Regular',
+            ]);
+
+            OrderStatusLog::create([
+                'order_id' => $orderB1->id,
+                'from_status' => 'preparing',
+                'to_status' => 'out_for_delivery',
+                'actor_type' => 'driver',
+                'notes' => 'Rider dispatched on EV',
+                'created_at' => now()->subMinutes(10),
+            ]);
         }
     }
 }

@@ -1,135 +1,69 @@
 {
-  "project": "ThalaivaaEnterprise",
-  "branchName": "ralph/vapt-security-docker-sandbox-and-live-tracking",
-  "description": "Enterprise Security (VAPT & OWASP Top 10 Hardening), Docker Desktop Container Sandbox Environment for Autonomous Agent Execution, and High-Fidelity Live Order Tracking with Conditional Driver Visibility",
+  "project": "ThalaivaaMobileApp",
+  "branchName": "ralph/mobile-ui-fitting-and-live-order-lifecycle",
+  "description": "Mobile Viewport UI Optimization, Delivered Order Tracking Guard, and Real-Time Dynamic Order Lifecycle Progression with Countdown ETA",
   "userStories": [
     {
       "id": "US-001",
-      "title": "Implement OWASP Top 10 & VAPT Security Hardening Middleware",
-      "description": "As a security engineer, I need strict VAPT compliance with secure HTTP headers, input sanitization, parameterized queries, and SSRF prevention.",
+      "title": "Optimize UI Layout and Status Badges to Fit Phone Screens Seamlessly",
+      "description": "As a mobile user, I want cards, text, and status badges in the Past Orders and Order Tracking screens to fit neatly on narrow phone screens without overflow or clipping.",
       "acceptanceCriteria": [
-        "Enforce strict Content Security Policy (CSP), X-Frame-Options: DENY, X-Content-Type-Options: nosniff, and Cache-Control: no-store in backend security middleware",
-        "Add SSRF validation guard to block private IP probing (127.0.0.1, RFC 1918 subnets)",
-        "Ensure all database queries and inputs are parameterized and sanitized against SQLi and XSS",
+        "Past order cards fit cleanly on mobile widths (320px - 430px) without horizontal clipping",
+        "Status badges use concise labels ('Preparing', 'Out for Delivery', 'Confirmed', 'Delivered') and compact padding to prevent edge overflow",
+        "Order header rows use Flexible/Expanded layouts to gracefully handle long branch names and order IDs",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "12/12 VAPT automated security tests passing in SecurityVaptTest.php"
+      "notes": "Responsive cards, expanded columns, and concise status badges formatted to fit 320px-430px mobile screens without overflow."
     },
     {
       "id": "US-002",
-      "title": "Configure Docker Desktop Sandbox Environment for Agent Execution",
-      "description": "As an AI Agent, I want access to an isolated Docker container sandbox to execute code, run unit tests, and evaluate test cases securely.",
+      "title": "Conditionally Guard Live Tracking Button for Delivered Orders",
+      "description": "As a customer, I do not want to see a 'Live Tracking' button for orders that have already been delivered.",
       "acceptanceCriteria": [
-        "Dockerfile.sandbox configured with non-root user (www-data/sandboxuser) and isolated alpine environment",
-        "docker-compose.yml defines sandbox service with memory limits (256MB), CPU allocation, and isolated network",
+        "In PastOrdersScreen, hide the 'Live Tracking' button when order.status == OrderStatus.delivered",
+        "Display a clean 'Delivered' checkmark indicator / completed receipt badge for delivered orders",
+        "Only display the 'Live Tracking' button for active, undelivered orders (confirmed, preparing, out for delivery)",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 2,
       "passes": true,
-      "notes": "Dockerfile.sandbox and docker-compose.yml validated and operational."
+      "notes": "Delivered orders omit the live tracking button and display a green check 'Delivered' badge."
     },
     {
       "id": "US-003",
-      "title": "Elevate Live Order Tracking UI with Strict Conditional Driver Visibility",
-      "description": "As a customer, I want live tracking with radar animation, ETA countdown, and driver details visible ONLY when out for delivery.",
+      "title": "Implement Real-Time Dynamic Order Lifecycle Progression & ETA Countdown",
+      "description": "As a customer ordering food, I want to see an initial estimated delivery time and have the order status automatically progress through processing, delivering, and delivered stages over time.",
       "acceptanceCriteria": [
-        "Driver name and details hidden during Confirmed and In the Kitchen stages (showing 'Assigning Delivery Partner')",
-        "Driver card (Ramesh Patel, TVS Jupiter EV, call & chat buttons) appears only when stage is Out for Delivery or Delivered",
-        "Timeline Step 3 dynamically updates without premature driver leaks",
-        "Interactive 4-stage simulation switcher bar allows instant testing across all states",
-        "Multi-language (EN/HI/GU/TA) synchronization verified across all tracking states",
+        "Newly placed orders calculate an estimated delivery window (e.g. 20-25 mins) and elapsed time",
+        "OrdersNotifier manages a real-time periodic lifecycle ticker that transitions orders: Confirmed -> Kitchen Preparing -> Out for Delivery -> Delivered",
+        "Dynamic ETA countdown in OrderScreen updates remaining time in real-time (e.g., '20-25 Mins' -> '15 Mins' -> '5 Mins' -> 'Delivered')",
+        "Live timeline steps in OrderScreen reflect the active progression stage automatically",
         "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
+        "Tests pass"
       ],
       "priority": 3,
       "passes": true,
-      "notes": "17/17 Flutter unit and widget tests passing cleanly in flutter_menu_filter_test.dart and order_tracking_test.dart."
+      "notes": "OrdersNotifier periodically transitions order lifecycle and updates dynamic ETA and timeline."
     },
     {
       "id": "US-004",
-      "title": "Fix Admin Panel & Compiled Flutter Web App Routing and Asset Resolution",
-      "description": "As an engineer, I want the Filament Admin Panel and Flutter Web App to load seamlessly with proper base href asset resolution and dedicated web routes.",
+      "title": "Execute Test Suite, Update Regression Tests, and Compile Flutter Web Build",
+      "description": "As a developer, I want all unit & widget tests to pass and the Flutter Web release to be built and deployed.",
       "acceptanceCriteria": [
-        "Base href in index.html set to /flutter_web/ for clean asset resolution",
-        "/flutter_web route configured in web.php",
-        "Filament Admin Panel loads cleanly at /admin",
+        "Widget tests in past_orders_test.dart verify that delivered orders do not show the Live Tracking button",
+        "Widget tests verify dynamic lifecycle stage progression and ETA calculations",
+        "All 17+ Flutter tests pass (flutter test)",
+        "Flutter Web production build completes and outputs to public/flutter_web/",
         "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
+        "Tests pass"
       ],
       "priority": 4,
       "passes": true,
-      "notes": "Verified /admin and /flutter_web endpoints operational."
-    },
-    {
-      "id": "US-005",
-      "title": "Embed Flutter App in Phone Frame with SaaS Auto-Authentication & OTP Login",
-      "description": "As a user, I want the real compiled Flutter Web application embedded inside the phone chassis in /simulator, with seamless auto-authentication and an interactive OTP login modal.",
-      "acceptanceCriteria": [
-        "Phone chassis in /simulator hosts compiled Flutter Web App iframe (/flutter_web/index.html)",
-        "Studio header toolbar provides mode toggle between Flutter Web App and Studio Mobile Frame",
-        "Automatic Sanctum OTP authentication executes on initialization (/api/v1/auth/otp/send & verify)",
-        "Interactive OTP Login Modal enables custom phone login and session switching",
-        "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
-      ],
-      "priority": 5,
-      "passes": true,
-      "notes": "Verified Flutter phone embedding and Sanctum auto-authentication in /simulator."
-    },
-    {
-      "id": "US-006",
-      "title": "Flutter App Native Login Component & Simulator Integration",
-      "description": "As a user, I want the compiled Flutter Web application running natively in /simulator with an interactive mobile OTP login form component and Sanctum session token status.",
-      "acceptanceCriteria": [
-        "Flutter app in /simulator renders mobile OTP Login widget in ProfileScreen",
-        "Phone number field and 6-digit OTP verification action execute successfully",
-        "Sanctum Session Token badge displayed on logged in user card",
-        "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
-      ],
-      "priority": 6,
-      "passes": true,
-      "notes": "Verified Flutter profile login component and Sanctum token management."
-    },
-    {
-      "id": "US-007",
-      "title": "Explicit Customer App Logout & Strict Authentication Guard for Order Creation",
-      "description": "As a SaaS customer, I want a clean Logout action to sign out and invalidate my Sanctum session, and I must be logged in with a valid phone number before placing any orders.",
-      "acceptanceCriteria": [
-        "Profile Screen includes explicit Logout button revoking Sanctum session (POST /api/v1/auth/logout) and clearing tokens",
-        "Order creation (placeOrder) is strictly blocked for unauthenticated users",
-        "Attempting checkout while unauthenticated triggers a warning toast and opens the Mobile OTP Login modal",
-        "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
-      ],
-      "priority": 7,
-      "passes": true,
-      "notes": "Verified Logout action, session token revocation, and mandatory auth ordering guard."
-    },
-    {
-      "id": "US-008",
-      "title": "Protected Profile Screen Access Gate & Automatic Menu Redirection on Logout",
-      "description": "As a security engineer, I want the Profile screen to be strictly protected so unauthenticated users cannot access account details or preferences until logged in.",
-      "acceptanceCriteria": [
-        "Navigating to Profile screen (switchScreen('profile')) while unauthenticated is strictly blocked",
-        "Blocked profile navigation triggers warning toast ('🔐 Login Required!') and opens Mobile OTP Login modal",
-        "Logging out while viewing Profile screen revokes Sanctum token and automatically redirects user to Menu screen",
-        "Typecheck passes",
-        "Tests pass",
-        "Verify in browser using dev-browser skill"
-      ],
-      "priority": 8,
-      "passes": true,
-      "notes": "Verified Profile screen authentication access gate and automatic logout redirection."
+      "notes": "18/18 tests passing in flutter test and production web build deployed."
     }
   ]
 }

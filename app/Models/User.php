@@ -18,10 +18,16 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'password',
         'otp_verified_at',
         'fcm_token',
         'locale',
         'is_active',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [

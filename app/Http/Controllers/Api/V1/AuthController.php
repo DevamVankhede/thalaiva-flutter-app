@@ -107,11 +107,81 @@ class AuthController extends Controller
     }
 
     /**
+     * Authenticate user by email or phone and password, issuing Sanctum token.
+     */
+    public function login(Request $request): JsonResponse
+    {
+        $request->validate([
+            'email' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'username' => 'nullable|string',
+            'email_or_phone' => 'nullable|string',
+            'password' => 'required|string',
+        ]);
+
+        $identifier = $request->input('email')
+            ?? $request->input('phone')
+            ?? $request->input('email_or_phone')
+            ?? $request->input('username');
+
+        if (empty($identifier)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email or phone number is required.',
+            ], 422);
+        }
+
+        $cleanPhone = preg_replace('/[^\d+]/', '', $identifier);
+
+        $user = User::where('email', $identifier)
+            ->orWhere('phone', $identifier)
+            ->when(!empty($cleanPhone), function ($query) use ($cleanPhone) {
+                $query->orWhere('phone', $cleanPhone);
+            })
+            ->first();
+
+        if (!$user || !$user->password || !Hash::check($request->input('password'), $user->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid email or password.',
+            ], 401);
+        }
+
+        if (!$user->is_active) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Account is inactive. Please contact support.',
+            ], 403);
+        }
+
+        $token = $user->createToken('customer-app')->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Authentication successful.',
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'email' => $user->email,
+            ],
+        ]);
+    }
+
+    /**
      * Get current authenticated user profile.
      */
     public function me(Request $request): JsonResponse
     {
-        $user = $request->user();
+        $user = $request->user() ?: auth('sanctum')->user();
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthenticated.',
+            ], 401);
+        }
 
         return response()->json([
             'success' => true,
@@ -130,8 +200,14 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        if ($request->user()) {
-            $request->user()->currentAccessToken()->delete();
+        $user = $request->user() ?: auth('sanctum')->user();
+
+        if ($user) {
+            if ($user->currentAccessToken()) {
+                $user->currentAccessToken()->delete();
+            } else {
+                $user->tokens()->delete();
+            }
         }
 
         return response()->json([
